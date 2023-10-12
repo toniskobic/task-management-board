@@ -1,1 +1,3 @@
 <p>task-board works!</p>
+<div *ngFor="let task of tasks">{{ task.title + " " + task.description }}</div>
+<button (click)="addTask()">Add Task</button>

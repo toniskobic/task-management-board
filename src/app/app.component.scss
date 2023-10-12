@@ -1,12 +1,19 @@
+@import "../styles/abstracts/variables";
+
 .header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  min-height: 100px;
   text-align: center;
 
   .title {
     margin: 0;
+    font-size: 2rem;
+
+    @media only screen and (min-width: $breakpoint-mobile) {
+      font-size: 3.6rem;
+    }
   }
 }
 
@@ -15,7 +22,10 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 992px;
   margin-inline: auto;
   padding-block: 50px;
+}
+
+.container {
+  max-width: 992px;
 }

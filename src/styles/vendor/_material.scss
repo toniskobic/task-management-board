@@ -1,0 +1,203 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$palette-rich-black: (
+  50: #e3e3e4,
+  100: #b8b9bc,
+  200: #898a90,
+  300: #595b63,
+  400: #363741,
+  500: $rich-black,
+  600: #10121c,
+  700: #0d0e18,
+  800: #0a0b13,
+  900: #05060b,
+  A100: #5151ff,
+  A200: #1e1eff,
+  A400: #0000ea,
+  A700: #0000d0,
+  contrast: (
+    50: $black,
+    100: $black,
+    200: $black,
+    300: $white,
+    400: $white,
+    500: $white,
+    600: $white,
+    700: $white,
+    800: $white,
+    900: $white,
+    A100: $white,
+    A200: $white,
+    A400: $white,
+    A700: $white,
+  ),
+);
+
+$palette-russian-violet: (
+  50: #e7e1eb,
+  100: #c4b3ce,
+  200: #9d80ae,
+  300: #754d8d,
+  400: #582774,
+  500: $russian-violet,
+  600: #340154,
+  700: #2c014a,
+  800: #250141,
+  900: #180030,
+  A100: #a469ff,
+  A200: #8536ff,
+  A400: #6603ff,
+  A700: #5b00e8,
+  contrast: (
+    50: $black,
+    100: $black,
+    200: $black,
+    300: $white,
+    400: $white,
+    500: $white,
+    600: $white,
+    700: $white,
+    800: $white,
+    900: $white,
+    A100: $black,
+    A200: $white,
+    A400: $white,
+    A700: $white,
+  ),
+);
+
+$palette-red: (
+  50: #fee0e0,
+  100: #fcb3b3,
+  200: #fa8080,
+  300: #f84d4d,
+  400: #f72626,
+  500: $red,
+  600: #f40000,
+  700: #f20000,
+  800: #f00000,
+  900: #ee0000,
+  A100: $white,
+  A200: #ffe1e1,
+  A400: #ffaeae,
+  A700: #ff9595,
+  contrast: (
+    50: $black,
+    100: $black,
+    200: $black,
+    300: $black,
+    400: $white,
+    500: $white,
+    600: $white,
+    700: $white,
+    800: $white,
+    900: $white,
+    A100: $black,
+    A200: $black,
+    A400: $black,
+    A700: $black,
+  ),
+);
+
+$background-palette: (
+  background: $rich-black,
+  card: $white,
+);
+
+$foreground-palette: (
+  text: $white,
+  secondary-text: $black,
+);
+
+$tmb-primary: mat.define-palette($palette-rich-black);
+$tmb-accent: mat.define-palette($palette-russian-violet, 500, A100, A400);
+$tmb-warn: mat.define-palette($palette-red);
+
+$tmb-typography: mat.define-typography-config(
+  $font-family: #{$font-family,
+  $font-family-alt},
+  $headline-5:
+    mat.define-typography-level(
+      $font-size: $font-size-3xl,
+      $line-height: $line-height-base,
+      $font-weight: $font-weight-bold,
+    ),
+  $headline-6:
+    mat.define-typography-level(
+      $font-size: $font-size-2xl,
+      $font-weight: $font-weight-bold,
+    ),
+  $subtitle-1:
+    mat.define-typography-level(
+      $font-size: $font-size-lg,
+      $font-weight: 500,
+      $line-height: $line-height-lg,
+      $letter-spacing: 0.0125em,
+    ),
+  $body-1:
+    mat.define-typography-level(
+      $font-size: $font-size-base,
+    ),
+  $body-2:
+    mat.define-typography-level(
+      $font-size: $font-size-base,
+    ),
+  $button:
+    mat.define-typography-level(
+      $font-size: $font-size-base,
+      $font-weight: 500,
+    ),
+);
+
+$tmb-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $tmb-primary,
+      accent: $tmb-accent,
+      warn: $tmb-warn,
+    ),
+    typography: $tmb-typography,
+    density: 0,
+  )
+);
+
+$tmb-theme: map.merge($tmb-theme, color, background, $background-palette);
+
+$tmb-theme: map.merge($tmb-theme, color, foreground, $foreground-palette);
+
+$tmb-theme: map.merge($tmb-theme, background, $background-palette);
+
+$tmb-theme: map.merge($tmb-theme, foreground, $foreground-palette);
+
+@include mat.all-component-themes($tmb-theme);
+@include mat.all-component-typographies($tmb-typography);
+
+span.mdc-button__label {
+  font-size: inherit;
+}
+
+.mat-component-density-s {
+  @include mat.all-component-densities(-1);
+}
+
+.mat-component-density-xs {
+  @include mat.all-component-densities(-2);
+}
+
+mat-snack-bar-container.mdc-snackbar.mat-mdc-snack-bar-container {
+  .mdc-snackbar__surface {
+    background: $gunmetal;
+  }
+
+  .mat-mdc-snack-bar-label.mdc-snackbar__label {
+    color: $white;
+  }
+
+  button.mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    background-color: $russian-violet;
+    color: $white;
+  }
+}

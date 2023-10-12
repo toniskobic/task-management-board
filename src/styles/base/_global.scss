@@ -1,6 +1,12 @@
 :root {
   // Colors
   --black: #{$black};
+  --rich-black: #{$rich-black};
+  --gunmetal: #{$gunmetal};
+  --raisin-black: #{$raisin-black};
+  --onyx: #{$onyx};
+  --russian-violet: #{$russian-violet};
+  --red: #{$red};
   --white: #{$white};
 
   // Fonts
@@ -14,7 +20,8 @@
   --font-size-4xl: #{$font-size-4xl};
 
   // Line Heights
-  --line-height-xs: #{$line-height-xs};
+  --line-height-base: #{$line-height-base};
+  --line-height-lg: #{$line-height-lg};
 
   // Font Families
   --font-family: #{$font-family};

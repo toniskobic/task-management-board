@@ -1,5 +1,5 @@
 // Fonts
-$font-family: 'Montserrat';
+$font-family: "Montserrat";
 $font-family-alt: sans-serif;
 
 // Font Sizing
@@ -19,11 +19,21 @@ $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 // Line Heights
-$line-height-xs: 1.2;
+$line-height-base: 1.2;
+$line-height-lg: 1.6;
 
 // Colors
 $black: #000000;
+$rich-black: #121420ff;
+$gunmetal: #1b2432ff;
+$raisin-black: #2c2b3cff;
+$onyx: #403f4cff;
+$russian-violet: #3a015cff;
+$red: #f50000;
 $white: #ffffffff;
+
+// Border Radiuses
+$border-radius-default: 6px;
 
 // Breakpoints
 $breakpoint-mobile: 480px;

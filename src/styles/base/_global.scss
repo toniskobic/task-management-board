@@ -1,0 +1,30 @@
+:root {
+  // Colors
+  --black: #{$black};
+  --white: #{$white};
+
+  // Fonts
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-base: #{$font-size-base};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+  --font-size-2xl: #{$font-size-2xl};
+  --font-size-3xl: #{$font-size-3xl};
+  --font-size-4xl: #{$font-size-4xl};
+
+  // Line Heights
+  --line-height-xs: #{$line-height-xs};
+
+  // Font Families
+  --font-family: #{$font-family};
+  --font-family-alt: #{$font-family-alt};
+
+  // Font Weights
+  --font-weight-regular: #{$font-weight-regular};
+  --font-weight-semibold: #{$font-weight-semibold};
+  --font-weight-bold: #{$font-weight-bold};
+
+  //Breakpoints
+  --breakpoint-mobile: #{$breakpoint-mobile};
+}

@@ -3,12 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'tmb-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'task-management-board';
-}
+export class AppComponent {}

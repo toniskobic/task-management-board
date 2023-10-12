@@ -11,7 +11,7 @@
     margin: 0;
     font-size: 2rem;
 
-    @media only screen and (min-width: $breakpoint-mobile) {
+    @media only screen and (min-width: $breakpoint-xs) {
       font-size: 3.6rem;
     }
   }
@@ -27,5 +27,5 @@ main {
 }
 
 .container {
-  max-width: 992px;
+  max-width: $breakpoints-md;
 }

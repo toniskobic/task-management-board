@@ -33,5 +33,9 @@
   --font-weight-bold: #{$font-weight-bold};
 
   //Breakpoints
-  --breakpoint-mobile: #{$breakpoint-mobile};
+  --breakpoint-xs: #{$breakpoint-xs};
+  --breakpoints-sm: #{$breakpoints-sm};
+  --breakpoints-md: #{$breakpoints-md};
+  --breakpoints-lg: #{$breakpoints-lg};
+  --breakpoints-xl: #{$breakpoints-xl};
 }

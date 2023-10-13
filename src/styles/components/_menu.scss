@@ -1,0 +1,22 @@
+.menu-panel.mat-mdc-menu-panel {
+  background-color: $onyx;
+  border-radius: $border-radius-default;
+
+  .mat-mdc-menu-content {
+    padding-inline: 5px;
+
+    .mat-mdc-menu-item {
+      min-height: 35px;
+      padding-inline: 10px;
+      border-radius: $border-radius-default;
+
+      .mat-icon {
+        margin-right: 10px;
+      }
+
+      .mat-mdc-menu-item-text {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}

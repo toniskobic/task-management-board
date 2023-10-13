@@ -1,6 +1,9 @@
 $border-radius-default: var(--border-radius-default);
 $raisin-black: var(--raisin-black);
 $onyx: var(--onyx);
+$light-violet: var(--light-violet);
+$yellow: var(--yellow);
+$green: var(--green);
 $font-size-xl: var(--font-size-xl);
 
 .category {
@@ -10,6 +13,26 @@ $font-size-xl: var(--font-size-xl);
   padding: 10px;
   background-color: $raisin-black;
   gap: 10px;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    mat-icon {
+      &.todo {
+        color: $light-violet;
+      }
+
+      &.in-progress {
+        color: $yellow;
+      }
+
+      &.completed {
+        color: $green;
+      }
+    }
+  }
 
   &-title {
     font-size: $font-size-xl;

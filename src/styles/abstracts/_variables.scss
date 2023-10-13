@@ -4,8 +4,9 @@ $font-family-alt: sans-serif;
 
 // Font Sizing
 $font-size-html: 62.5%;
-$font-size-xs: 0.8rem;
-$font-size-sm: 1.2rem;
+$font-size-2xs: 0.8rem;
+$font-size-xs: 1.2rem;
+$font-size-sm: 1.4rem;
 $font-size-base: 1.6rem;
 $font-size-lg: 2rem;
 $font-size-xl: 2.4rem;
@@ -29,8 +30,14 @@ $gunmetal: #1b2432ff;
 $raisin-black: #2c2b3cff;
 $onyx: #403f4cff;
 $russian-violet: #3a015cff;
+$light-violet: #9903f3ff;
+$green: #008000ff;
+$yellow: #f5e617ff;
 $red: #f50000;
 $white: #ffffffff;
+$green-triplet: 0, 128, 0;
+$yellow-triplet: 245, 230, 23;
+$red-triplet: 245, 0, 0;
 
 // Border Radiuses
 $border-radius-default: 6px;

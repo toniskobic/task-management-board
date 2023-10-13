@@ -1,6 +1,13 @@
 $onyx: var(--onyx);
+$green: var(--green);
+$yellow: var(--yellow);
+$red: var(--red);
+$green-triplet: var(--green-triplet);
+$yellow-triplet: var(--yellow-triplet);
+$red-triplet: var(--red-triplet);
 $border-radius-default: var(--border-radius-default);
 $font-size-lg: var(--font-size-lg);
+$font-size-xs: var(--font-size-xs);
 
 .task {
   background-color: $onyx;
@@ -8,11 +15,45 @@ $font-size-lg: var(--font-size-lg);
   gap: 5px;
 
   &-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
     padding: 10px 10px 0;
+
+    .mdc-icon-button {
+      margin-left: auto;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+    }
   }
 
   &-title {
     font-size: $font-size-lg;
+  }
+
+  &-priority {
+    font-size: $font-size-xs;
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 3px 6px;
+
+    &.low {
+      border-color: $green;
+      background: rgba($green-triplet, 0.1);
+    }
+
+    &.medium {
+      border-color: $yellow;
+      background: rgba($yellow-triplet, 0.1);
+    }
+
+    &.high {
+      border-color: $red;
+      background: rgba($red-triplet, 0.1);
+    }
   }
 
   &-content.mat-mdc-card-content {

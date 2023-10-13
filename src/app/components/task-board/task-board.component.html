@@ -1,6 +1,8 @@
 <div class="board">
   <div class="board-actions">
-    <button (click)="addTask()">Add Task</button>
+    <button mat-icon-button (click)="addTask()">
+      <mat-icon svgIcon="add"></mat-icon>
+    </button>
   </div>
   <div class="board-categories">
     <tmb-task-category

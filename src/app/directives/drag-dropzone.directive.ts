@@ -8,23 +8,14 @@ import { Task, TaskStatus } from '../models/task.model';
   standalone: true,
 })
 export class DragDropzoneDirective {
-  @Input({ required: true }) category: TaskStatus = TaskStatus.ToDo;
+  @Input() dropCallback?: (event: DragEvent) => void | Promise<void>;
 
-  constructor(
-    private el: ElementRef,
-    private storage: StorageService<StorageSchema>
-  ) {}
+  constructor(private el: ElementRef) {}
 
-  @HostListener('drop', ['$event']) onDrop(event: DragEvent) {
+  @HostListener('drop', ['$event']) async onDrop(event: DragEvent) {
     this.el.nativeElement.classList.remove('active-dropzone');
-
-    const data = event.dataTransfer?.getData('text') || '';
-    const allTasks = this.storage.getItem('tasks') || [];
-    const task = allTasks.find((task: Task) => task.id === data);
-
-    if (task) {
-      task.status = this.category;
-      this.storage.setItem('tasks', allTasks);
+    if (this.dropCallback) {
+      await this.dropCallback(event);
     }
   }
 

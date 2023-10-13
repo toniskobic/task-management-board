@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { StorageService } from 'src/app/services/storage.service';
 import { StorageSchema } from 'src/app/models/storage-schema.model';
 import { DragDropzoneDirective } from 'src/app/directives/drag-dropzone.directive';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'tmb-task-category',
@@ -22,11 +23,29 @@ import { DragDropzoneDirective } from 'src/app/directives/drag-dropzone.directiv
   ],
 })
 export class TaskCategoryComponent {
+  TaskStatus = TaskStatus;
+
   @Input() title: string = '';
   @Input() tasks: Task[] = [];
   @Input() category: TaskStatus = TaskStatus.ToDo;
 
-  constructor(public storage: StorageService<StorageSchema>) {}
+  constructor(
+    private utilsService: UtilsService,
+    private storage: StorageService<StorageSchema>
+  ) {
+    this.utilsService.initSvgIcons(['to-do', 'in-progress', 'check-circle']);
+  }
+
+  dropCallback = (event: DragEvent) => {
+    const data = event.dataTransfer?.getData('text') || '';
+    const allTasks = this.storage.getItem('tasks') || [];
+    const task = allTasks.find((task: Task) => task.id === data);
+
+    if (task) {
+      task.status = this.category;
+      this.storage.setItem('tasks', allTasks);
+    }
+  };
 
   trackByFn(index: number, item: Task): string {
     return item.id;

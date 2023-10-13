@@ -1,0 +1,38 @@
+.mat-mdc-dialog-container {
+  div.mdc-dialog__surface {
+    background-color: $onyx;
+
+    div.dialog-container {
+      background-color: $onyx;
+      color: $white;
+
+      .mdc-dialog__title {
+        font-size: 2rem;
+        line-height: $line-height-base;
+        color: $white;
+        padding: 10px;
+        margin: 0;
+
+        &::before {
+          display: none;
+          height: 0;
+        }
+      }
+
+      .mdc-dialog__content {
+        color: $white;
+        padding: 10px;
+
+        .content-wrapper {
+          background-color: $onyx;
+          padding: 16px;
+          border-radius: 4px;
+        }
+      }
+
+      .mat-mdc-dialog-actions.mdc-dialog__actions {
+        margin-top: 16px;
+      }
+    }
+  }
+}

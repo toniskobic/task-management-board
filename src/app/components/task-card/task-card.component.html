@@ -1,6 +1,29 @@
 <mat-card class="task" tmbDraggable [dragData]="task.id">
   <mat-card-header class="task-header">
     <mat-card-title class="task-title">{{ task.title }}</mat-card-title>
+    <div
+      class="task-priority"
+      [ngClass]="{
+        low: task.priority === TaskPriority.Low,
+        medium: task.priority === TaskPriority.Medium,
+        high: task.priority === TaskPriority.High
+      }"
+    >
+      prio-{{ task.priority }}
+    </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon svgIcon="three-dots-horizontal"></mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [class]="'menu-panel'">
+      <ng-template matMenuContent>
+        <button mat-menu-item (click)="moreDetails()">
+          <mat-icon svgIcon="view"></mat-icon>View more
+        </button>
+        <button mat-menu-item (click)="remove()">
+          <mat-icon svgIcon="delete"></mat-icon>Remove
+        </button>
+      </ng-template>
+    </mat-menu>
   </mat-card-header>
   <mat-card-content class="task-content">
     <p>{{ task.description }}</p>

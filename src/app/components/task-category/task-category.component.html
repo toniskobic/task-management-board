@@ -1,8 +1,23 @@
 <div class="category">
   <div class="category-header">
     <h3 class="category-title">{{ title }}</h3>
+    <mat-icon
+      class="todo"
+      *ngIf="category === TaskStatus.ToDo"
+      svgIcon="to-do"
+    ></mat-icon>
+    <mat-icon
+      class="in-progress"
+      *ngIf="category === TaskStatus.InProgress"
+      svgIcon="in-progress"
+    ></mat-icon>
+    <mat-icon
+      class="completed"
+      *ngIf="category === TaskStatus.Completed"
+      svgIcon="check-circle"
+    ></mat-icon>
   </div>
-  <div tmbDragDropzone [category]="category" class="category-content">
+  <div tmbDragDropzone [dropCallback]="dropCallback" class="category-content">
     <tmb-task-card
       *ngFor="let task of tasks; trackBy: trackByFn"
       [task]="task"

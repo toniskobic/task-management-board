@@ -1,0 +1,32 @@
+@import "../../../styles/abstracts/variables";
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: $gunmetal;
+  padding: 10px;
+  border-radius: $border-radius-default;
+  border: 2px solid $onyx;
+
+  &-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @media only screen and (min-width: $breakpoints-sm) {
+      flex-direction: row;
+
+      & > * {
+        flex: 1;
+      }
+    }
+  }
+}

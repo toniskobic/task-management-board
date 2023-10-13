@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { StorageService } from 'src/app/services/storage.service';
 import { StorageSchema } from 'src/app/models/storage-schema.model';
 import { TaskStatus } from 'src/app/models/task.model';
+import { TaskCardComponent } from '../task-card/task-card.component';
+import { TaskCategoryComponent } from '../task-category/task-category.component';
 
 @Component({
   selector: 'tmb-task-board',
   standalone: true,
-  imports: [CommonModule],
   templateUrl: './task-board.component.html',
   styleUrls: ['./task-board.component.scss'],
+  imports: [CommonModule, TaskCardComponent, TaskCategoryComponent],
 })
 export class TaskBoardComponent {
   constructor(private storage: StorageService<StorageSchema>) {}

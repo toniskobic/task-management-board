@@ -1,0 +1,21 @@
+$onyx: var(--onyx);
+$border-radius-default: var(--border-radius-default);
+$font-size-lg: var(--font-size-lg);
+
+.task {
+  background-color: $onyx;
+  border-radius: $border-radius-default;
+  gap: 5px;
+
+  &-header {
+    padding: 10px 10px 0;
+  }
+
+  &-title {
+    font-size: $font-size-lg;
+  }
+
+  &-content.mat-mdc-card-content {
+    padding: 0 10px 10px;
+  }
+}

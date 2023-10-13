@@ -1,0 +1,24 @@
+$border-radius-default: var(--border-radius-default);
+$raisin-black: var(--raisin-black);
+$onyx: var(--onyx);
+$font-size-xl: var(--font-size-xl);
+
+.category {
+  display: flex;
+  flex-direction: column;
+  border-radius: $border-radius-default;
+  padding: 10px;
+  background-color: $raisin-black;
+  gap: 10px;
+
+  &-title {
+    font-size: $font-size-xl;
+    margin: 0;
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}

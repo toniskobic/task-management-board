@@ -1,3 +1,16 @@
-<p>task-board works!</p>
-<div *ngFor="let task of tasks">{{ task.title + " " + task.description }}</div>
-<button (click)="addTask()">Add Task</button>
+<div class="board">
+  <div class="board-actions">
+    <button (click)="addTask()">Add Task</button>
+  </div>
+  <div class="board-categories">
+    <tmb-task-category [tasks]="tasks" [title]="'To Do'"></tmb-task-category>
+    <tmb-task-category
+      [tasks]="tasks"
+      [title]="'In Progress'"
+    ></tmb-task-category>
+    <tmb-task-category
+      [tasks]="tasks"
+      [title]="'Completed'"
+    ></tmb-task-category>
+  </div>
+</div>

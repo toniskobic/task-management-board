@@ -27,5 +27,7 @@ main {
 }
 
 .container {
+  width: 100%;
   max-width: $breakpoints-md;
+  padding-inline: 20px;
 }

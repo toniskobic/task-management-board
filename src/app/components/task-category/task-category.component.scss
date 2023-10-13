@@ -20,5 +20,9 @@ $font-size-xl: var(--font-size-xl);
     display: flex;
     flex-direction: column;
     gap: 5px;
+
+    &:empty {
+      padding-bottom: 50px;
+    }
   }
 }

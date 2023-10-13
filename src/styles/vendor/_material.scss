@@ -201,3 +201,8 @@ mat-snack-bar-container.mdc-snackbar.mat-mdc-snack-bar-container {
     color: $white;
   }
 }
+
+button.mat-mdc-icon-button .mat-mdc-button-touch-target {
+  width: inherit;
+  height: inherit;
+}

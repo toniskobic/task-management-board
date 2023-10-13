@@ -42,3 +42,7 @@
   --breakpoints-lg: #{$breakpoints-lg};
   --breakpoints-xl: #{$breakpoints-xl};
 }
+
+.active-dropzone * {
+  pointer-events: none;
+}

@@ -2,7 +2,10 @@
   <div class="category-header">
     <h3 class="category-title">{{ title }}</h3>
   </div>
-  <div class="category-content">
-    <tmb-task-card *ngFor="let task of tasks" [task]="task"></tmb-task-card>
+  <div tmbDragDropzone [category]="category" class="category-content">
+    <tmb-task-card
+      *ngFor="let task of tasks; trackBy: trackByFn"
+      [task]="task"
+    ></tmb-task-card>
   </div>
 </div>

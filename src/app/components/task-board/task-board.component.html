@@ -3,14 +3,20 @@
     <button (click)="addTask()">Add Task</button>
   </div>
   <div class="board-categories">
-    <tmb-task-category [tasks]="tasks" [title]="'To Do'"></tmb-task-category>
     <tmb-task-category
-      [tasks]="tasks"
-      [title]="'In Progress'"
+      [tasks]="toDoTasks"
+      [title]="'To Do'"
+      [category]="TaskStatus.ToDo"
     ></tmb-task-category>
     <tmb-task-category
-      [tasks]="tasks"
+      [tasks]="inProgressTasks"
+      [title]="'In Progress'"
+      [category]="TaskStatus.InProgress"
+    ></tmb-task-category>
+    <tmb-task-category
+      [tasks]="completedTasks"
       [title]="'Completed'"
+      [category]="TaskStatus.Completed"
     ></tmb-task-category>
   </div>
 </div>

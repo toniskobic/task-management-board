@@ -5,6 +5,7 @@ import { StorageSchema } from 'src/app/models/storage-schema.model';
 import { TaskStatus } from 'src/app/models/task.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { TaskCategoryComponent } from '../task-category/task-category.component';
+import { v4 } from 'uuid';
 
 @Component({
   selector: 'tmb-task-board',
@@ -14,20 +15,33 @@ import { TaskCategoryComponent } from '../task-category/task-category.component'
   imports: [CommonModule, TaskCardComponent, TaskCategoryComponent],
 })
 export class TaskBoardComponent {
+  TaskStatus = TaskStatus;
+
   constructor(private storage: StorageService<StorageSchema>) {}
 
   get tasks() {
     return this.storage.getItem('tasks') || [];
   }
 
+  get toDoTasks() {
+    return this.tasks.filter((task) => task.status === TaskStatus.ToDo);
+  }
+  get inProgressTasks() {
+    return this.tasks.filter((task) => task.status === TaskStatus.InProgress);
+  }
+  get completedTasks() {
+    return this.tasks.filter((task) => task.status === TaskStatus.Completed);
+  }
+
   addTask() {
+    const status = Math.floor(Math.random() * 3);
     this.storage.setItem('tasks', [
       ...this.tasks,
       {
-        id: '1',
+        id: v4(),
         title: 'Task 1',
         description: 'Task 1',
-        status: TaskStatus.ToDo,
+        status: status,
       },
     ]);
   }

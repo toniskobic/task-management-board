@@ -1,9 +1,14 @@
+import { Moment } from 'moment';
+
 export interface Task {
   id: string;
   title: string;
-  description: string;
   status: TaskStatus;
   priority: TaskPriority;
+  assignee: string;
+  description: string;
+  createdAt: Moment;
+  dueDate: Moment;
 }
 
 export enum TaskStatus {

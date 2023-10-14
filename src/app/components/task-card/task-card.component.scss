@@ -42,17 +42,17 @@ $font-size-xs: var(--font-size-xs);
 
     &.low {
       border-color: $green;
-      background: rgba($green-triplet, 0.1);
+      background-color: rgba($green-triplet, 0.1);
     }
 
     &.medium {
       border-color: $yellow;
-      background: rgba($yellow-triplet, 0.1);
+      background-color: rgba($yellow-triplet, 0.1);
     }
 
     &.high {
       border-color: $red;
-      background: rgba($red-triplet, 0.1);
+      background-color: rgba($red-triplet, 0.1);
     }
   }
 

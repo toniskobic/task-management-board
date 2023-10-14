@@ -49,6 +49,6 @@ export class TaskCardComponent {
   }
 
   moreDetails() {
-    this.dialog.open(TaskDetailsDialogComponent);
+    this.dialog.open(TaskDetailsDialogComponent, { width: '640px' });
   }
 }

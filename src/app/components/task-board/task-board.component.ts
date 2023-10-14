@@ -5,10 +5,11 @@ import { StorageSchema } from 'src/app/models/storage-schema.model';
 import { TaskStatus } from 'src/app/models/task.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { TaskCategoryComponent } from '../task-category/task-category.component';
-import { v4 } from 'uuid';
 import { UtilsService } from 'src/app/services/utils.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { EditTaskComponent } from '../edit-task/edit-task.component';
 
 @Component({
   selector: 'tmb-task-board',
@@ -21,6 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
     TaskCategoryComponent,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
+    EditTaskComponent,
   ],
 })
 export class TaskBoardComponent {
@@ -28,7 +31,8 @@ export class TaskBoardComponent {
 
   constructor(
     private storage: StorageService<StorageSchema>,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private dialog: MatDialog
   ) {
     this.utilsService.initSvgIcons(['add']);
   }
@@ -48,17 +52,21 @@ export class TaskBoardComponent {
   }
 
   addTask() {
-    const status = Math.floor(Math.random() * 3);
-    const priority = Math.floor(Math.random() * 3) + 1;
-    this.storage.setItem('tasks', [
-      ...this.tasks,
-      {
-        id: v4(),
-        title: 'Task 1',
-        description: 'Task 1',
-        status: status,
-        priority: priority,
-      },
-    ]);
+    this.dialog.open(EditTaskComponent, { width: '640px' });
+    // const status = Math.floor(Math.random() * 3);
+    // const priority = Math.floor(Math.random() * 3) + 1;
+    // this.storage.setItem('tasks', [
+    //   ...this.tasks,
+    //   {
+    //     id: v4(),
+    //     title: 'Task 1',
+    //     description: 'Task 1',
+    //     status: status,
+    //     priority: priority,
+    //     assignee: 'John Doe',
+    //     createdAt: moment(),
+    //     dueDate: moment().add(1, 'days'),
+    //   },
+    // ]);
   }
 }

@@ -1,0 +1,24 @@
+<div class="dialog-container mat-app-background mat-typography">
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input
+        matInput
+        [ngxMatDatetimePicker]="dueDatePicker"
+        type="datetime"
+        formControlName="dueDate"
+      />
+      <ngx-mat-datepicker-toggle
+        matSuffix
+        [for]="dueDatePicker"
+      ></ngx-mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #dueDatePicker [color]="'accent'">
+        <ngx-mat-datepicker-actions>
+          <button mat-button ngxMatDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="accent" ngxMatDatepickerApply>
+            Apply
+          </button>
+        </ngx-mat-datepicker-actions></ngx-mat-datetime-picker
+      >
+    </mat-form-field>
+  </form>
+</div>

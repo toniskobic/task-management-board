@@ -207,64 +207,34 @@ button.mat-mdc-icon-button .mat-mdc-button-touch-target {
   height: inherit;
 }
 
-ngx-mat-datepicker-content.mat-datepicker-content {
-  border-radius: $border-radius-default;
+div.select-panel,
+div.select-panel.mat-mdc-select-panel {
   background-color: $onyx;
-  color: $white;
-  font-size: $font-size-sm;
+  padding-inline: 5px;
+  border-bottom-left-radius: $border-radius-default;
+  border-bottom-right-radius: $border-radius-default;
 
-  & * {
-    font-size: inherit;
+  .mat-mdc-option {
+    border-radius: $border-radius-default;
   }
 
-  .mat-mdc-button:not(:disabled) {
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(
+      .mat-mdc-option-multiple
+    ) {
+    background-color: rgba(var(--black-triplet), 0.1);
+  }
+
+  .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+    background-color: rgba(var(--black-triplet), 0.1);
+  }
+
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
+    .mdc-list-item__primary-text {
     color: $white;
-    border-radius: $border-radius-default;
   }
-
-  .mat-calendar {
-    &-arrow {
-      fill: $white;
-    }
-
-    &-previous-button,
-    &-next-button {
-      color: $white;
-    }
-
-    &-table-header,
-    &-body-label {
-      color: $white;
-    }
-
-    &-table-header-divider::after {
-      background-color: rgba($white, 0.3);
-    }
-
-    &-body-today:not(.mat-calendar-body-selected):not(
-        .mat-calendar-body-comparison-identical
-      ) {
-      border-color: $russian-violet;
-    }
-  }
-
-  .time-container {
-    &:before {
-      background-color: rgba($white, 0.3);
-      height: 2px;
-    }
-
-    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
-      color: $white;
-    }
-
-    .mdc-text-field--filled:not(.mdc-text-field--disabled)
-      .mdc-line-ripple::before {
-      border-bottom-color: rgba($white, 0.3);
-    }
-  }
-
-  .mat-datepicker-actions .mat-mdc-button-base + .mat-mdc-button-base {
-    border-radius: $border-radius-default;
-  }
+}
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
+.mat-primary
+  .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+  color: $white;
 }

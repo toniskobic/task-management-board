@@ -1,4 +1,5 @@
 import { NgxMatDateFormats } from '@angular-material-components/datetime-picker';
+import { TaskStatus } from '../models/task.model';
 
 export const DATETIME_FORMAT: NgxMatDateFormats = {
   parse: {
@@ -11,3 +12,7 @@ export const DATETIME_FORMAT: NgxMatDateFormats = {
     monthYearA11yLabel: 'MMM YYYY',
   },
 };
+
+export const DIALOG_WIDTH = '640px';
+
+export const TASK_STATUS_LABELS = ['To Do', 'In Progress', 'Completed'];

@@ -1,0 +1,65 @@
+ngx-mat-datepicker-content.mat-datepicker-content {
+  border-radius: $border-radius-default;
+  background-color: $onyx;
+  color: $white;
+  font-size: $font-size-sm;
+
+  & * {
+    font-size: inherit;
+  }
+
+  .mat-mdc-button:not(:disabled) {
+    color: $white;
+    border-radius: $border-radius-default;
+  }
+
+  .mat-calendar {
+    &-arrow {
+      fill: $white;
+    }
+
+    &-previous-button,
+    &-next-button {
+      color: $white;
+    }
+
+    &-table-header,
+    &-body-label {
+      color: $white;
+    }
+
+    &-table-header-divider::after {
+      background-color: rgba($white, 0.3);
+    }
+
+    &-body-today:not(.mat-calendar-body-selected):not(
+        .mat-calendar-body-comparison-identical
+      ) {
+      border-color: $russian-violet;
+    }
+  }
+
+  .time-container {
+    &:before {
+      background-color: rgba($white, 0.3);
+      height: 2px;
+    }
+
+    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input {
+      color: $white;
+    }
+
+    .mdc-text-field--filled:not(.mdc-text-field--disabled)
+      .mdc-line-ripple::before {
+      border-bottom-color: rgba($white, 0.3);
+    }
+  }
+
+  .mat-datepicker-actions .mat-mdc-button-base + .mat-mdc-button-base {
+    border-radius: $border-radius-default;
+  }
+}
+
+.mat-datepicker-toggle {
+  color: $white;
+}

@@ -12,6 +12,8 @@ import { StorageSchema } from 'src/app/models/storage-schema.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TaskDetailsDialogComponent } from '../task-details-dialog/task-details-dialog.component';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
+import { DIALOG_WIDTH } from 'src/app/constants/constants';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'tmb-task-card',
@@ -20,6 +22,7 @@ import { EditTaskComponent } from '../edit-task/edit-task.component';
     CommonModule,
     MatCardModule,
     DraggableDirective,
+    A11yModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
@@ -47,11 +50,17 @@ export class TaskCardComponent {
   }
 
   moreDetails() {
-    this.dialog.open(TaskDetailsDialogComponent, { width: '640px' });
+    this.dialog.open(TaskDetailsDialogComponent, {
+      width: DIALOG_WIDTH,
+      data: this.task,
+    });
   }
 
   edit() {
-    this.dialog.open(EditTaskComponent, { width: '640px' });
+    this.dialog.open(EditTaskComponent, {
+      width: DIALOG_WIDTH,
+      data: { isEdit: true, task: this.task },
+    });
   }
 
   remove() {

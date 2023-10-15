@@ -16,15 +16,21 @@
     </button>
     <mat-menu #menu="matMenu" [class]="'menu-panel'">
       <ng-template matMenuContent>
-        <button mat-menu-item (click)="moreDetails()">
-          <mat-icon svgIcon="view"></mat-icon>View more
-        </button>
-        <button mat-menu-item (click)="edit()">
-          <mat-icon svgIcon="edit"></mat-icon>Edit
-        </button>
-        <button mat-menu-item (click)="remove()">
-          <mat-icon svgIcon="delete"></mat-icon>Remove
-        </button>
+        <div
+          cdkTrapFocus
+          [cdkTrapFocusAutoCapture]="true"
+          (keydown.tab)="$event.stopPropagation()"
+        >
+          <button mat-menu-item (click)="moreDetails()">
+            <mat-icon svgIcon="view"></mat-icon>View more
+          </button>
+          <button mat-menu-item (click)="edit()">
+            <mat-icon svgIcon="edit"></mat-icon>Edit
+          </button>
+          <button mat-menu-item (click)="remove()">
+            <mat-icon svgIcon="delete"></mat-icon>Remove
+          </button>
+        </div>
       </ng-template>
     </mat-menu>
   </mat-card-header>

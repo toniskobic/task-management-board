@@ -1,24 +1,68 @@
 <div class="dialog-container mat-app-background mat-typography">
-  <form [formGroup]="form">
-    <mat-form-field>
-      <input
-        matInput
-        [ngxMatDatetimePicker]="dueDatePicker"
-        type="datetime"
-        formControlName="dueDate"
-      />
-      <ngx-mat-datepicker-toggle
-        matSuffix
-        [for]="dueDatePicker"
-      ></ngx-mat-datepicker-toggle>
-      <ngx-mat-datetime-picker #dueDatePicker [color]="'accent'">
-        <ngx-mat-datepicker-actions>
-          <button mat-button ngxMatDatepickerCancel>Cancel</button>
-          <button mat-raised-button color="accent" ngxMatDatepickerApply>
-            Apply
-          </button>
-        </ngx-mat-datepicker-actions></ngx-mat-datetime-picker
+  <mat-dialog-content>
+    <form [formGroup]="form" class="form">
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
       >
-    </mat-form-field>
-  </form>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" type="text" />
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" panelClass="select-panel">
+          <mat-option *ngFor="let status of taskStatuses" [value]="status">
+            {{ statusLabels[status] }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Assignee</mat-label>
+        <input matInput formControlName="assignee" type="text" />
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Due Date</mat-label>
+        <input
+          matInput
+          [ngxMatDatetimePicker]="dueDatePicker"
+          type="datetime"
+          formControlName="dueDate"
+        />
+        <ngx-mat-datepicker-toggle
+          matSuffix
+          [for]="dueDatePicker"
+        ></ngx-mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #dueDatePicker [color]="'accent'">
+          <ngx-mat-datepicker-actions>
+            <button mat-button ngxMatDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="accent" ngxMatDatepickerApply>
+              Apply
+            </button>
+          </ngx-mat-datepicker-actions></ngx-mat-datetime-picker
+        >
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
 </div>

@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { TextFieldModule } from '@angular/cdk/text-field';
 import {
   NgxMatMomentModule,
   NgxMatMomentAdapter,
@@ -19,7 +21,10 @@ import {
   NgxMatNativeDateModule,
 } from '@angular-material-components/datetime-picker';
 import * as moment from 'moment';
-import { DATETIME_FORMAT } from 'src/app/constants/constants';
+import {
+  DATETIME_FORMAT,
+  TASK_STATUS_LABELS,
+} from 'src/app/constants/constants';
 import { MatButtonModule } from '@angular/material/button';
 import {
   Task,
@@ -27,8 +32,14 @@ import {
   TaskPriority,
   TaskStatus,
 } from 'src/app/models/task.model';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MAT_DIALOG_DEFAULT_OPTIONS,
+  MatDialogConfig,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { ModelFormGroup } from 'src/app/models/model-form-group.model';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'tmb-edit-task',
@@ -40,9 +51,12 @@ import { ModelFormGroup } from 'src/app/models/model-form-group.model';
     ReactiveFormsModule,
     MatButtonModule,
     MatInputModule,
+    MatSelectModule,
+    TextFieldModule,
     NgxMatMomentModule,
     NgxMatDatetimePickerModule,
     NgxMatNativeDateModule,
+    MatDialogModule,
   ],
   providers: [
     {
@@ -55,12 +69,18 @@ import { ModelFormGroup } from 'src/app/models/model-form-group.model';
   styleUrls: ['./edit-task.component.scss'],
 })
 export class EditTaskComponent {
+  taskStatuses = this.utilsService.getEnumNumberValues(TaskStatus);
+  TaskPriority = TaskPriority;
+  statusLabels = TASK_STATUS_LABELS;
+
   form!: ModelFormGroup<TaskOmitId>;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { task: Task; isEdit: boolean }
+    private utilsService: UtilsService,
+    @Inject(MAT_DIALOG_DATA) private data: { task: Task; isEdit: boolean }
   ) {
     this.createForm();
+    console.log(this.taskStatuses);
   }
 
   createForm() {

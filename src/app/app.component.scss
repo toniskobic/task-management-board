@@ -28,6 +28,10 @@ main {
 
 .container {
   width: 100%;
-  max-width: $breakpoints-md;
+  max-width: $breakpoint-xs;
   padding-inline: 20px;
+
+  @media only screen and (min-width: $breakpoint-sm) {
+    max-width: $breakpoint-md;
+  }
 }

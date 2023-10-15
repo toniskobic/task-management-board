@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
+import { DIALOG_WIDTH } from 'src/app/constants/constants';
+import { A11yModule } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'tmb-task-board',
@@ -24,6 +26,7 @@ import { EditTaskComponent } from '../edit-task/edit-task.component';
     MatButtonModule,
     MatDialogModule,
     EditTaskComponent,
+    A11yModule,
   ],
 })
 export class TaskBoardComponent {
@@ -52,7 +55,10 @@ export class TaskBoardComponent {
   }
 
   addTask() {
-    this.dialog.open(EditTaskComponent, { width: '640px' });
+    this.dialog.open(EditTaskComponent, {
+      width: DIALOG_WIDTH,
+      data: { isEdit: false },
+    });
     // const status = Math.floor(Math.random() * 3);
     // const priority = Math.floor(Math.random() * 3) + 1;
     // this.storage.setItem('tasks', [

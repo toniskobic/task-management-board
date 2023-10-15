@@ -21,4 +21,14 @@ export class UtilsService {
       );
     });
   }
+
+  getEnumNumberValues(enumObject: any) {
+    const enumValues: number[] = [];
+    for (const status in enumObject) {
+      if (isNaN(Number(status))) {
+        enumValues.push(enumObject[status]);
+      }
+    }
+    return enumValues;
+  }
 }

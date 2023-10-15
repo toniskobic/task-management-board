@@ -11,9 +11,11 @@
   --yellow: #{$yellow};
   --red: #{$red};
   --white: #{$white};
+  --black-triplet: #{$black-triplet};
   --green-triplet: #{$green-triplet};
   --yellow-triplet: #{$yellow-triplet};
   --red-triplet: #{$red-triplet};
+  --white-triplet: #{$white-triplet};
 
   // Fonts
   --font-size-2xs: #{$font-size-2xs};
@@ -44,10 +46,10 @@
 
   //Breakpoints
   --breakpoint-xs: #{$breakpoint-xs};
-  --breakpoints-sm: #{$breakpoints-sm};
-  --breakpoints-md: #{$breakpoints-md};
-  --breakpoints-lg: #{$breakpoints-lg};
-  --breakpoints-xl: #{$breakpoints-xl};
+  --breakpoint-sm: #{$breakpoint-sm};
+  --breakpoint-md: #{$breakpoint-md};
+  --breakpoint-lg: #{$breakpoint-lg};
+  --breakpoint-xl: #{$breakpoint-xl};
 }
 
 .active-dropzone * {

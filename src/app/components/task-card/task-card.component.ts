@@ -11,6 +11,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { StorageSchema } from 'src/app/models/storage-schema.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TaskDetailsDialogComponent } from '../task-details-dialog/task-details-dialog.component';
+import { EditTaskComponent } from '../edit-task/edit-task.component';
 
 @Component({
   selector: 'tmb-task-card',
@@ -37,7 +38,20 @@ export class TaskCardComponent {
     private storage: StorageService<StorageSchema>,
     private dialog: MatDialog
   ) {
-    this.utilsService.initSvgIcons(['three-dots-horizontal', 'view', 'delete']);
+    this.utilsService.initSvgIcons([
+      'three-dots-horizontal',
+      'view',
+      'delete',
+      'edit',
+    ]);
+  }
+
+  moreDetails() {
+    this.dialog.open(TaskDetailsDialogComponent, { width: '640px' });
+  }
+
+  edit() {
+    this.dialog.open(EditTaskComponent, { width: '640px' });
   }
 
   remove() {
@@ -46,9 +60,5 @@ export class TaskCardComponent {
       'tasks',
       tasks?.filter((task) => task.id !== this.task.id)
     );
-  }
-
-  moreDetails() {
-    this.dialog.open(TaskDetailsDialogComponent, { width: '640px' });
   }
 }

@@ -32,6 +32,10 @@ $font-size-xs: var(--font-size-xs);
 
   &-title {
     font-size: $font-size-lg;
+    flex: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   &-priority {
@@ -39,6 +43,7 @@ $font-size-xs: var(--font-size-xs);
     border: 1px solid;
     border-radius: 15px;
     padding: 3px 6px;
+    flex-shrink: 0;
 
     &.low {
       border-color: $green;
@@ -54,6 +59,10 @@ $font-size-xs: var(--font-size-xs);
       border-color: $red;
       background-color: rgba($red-triplet, 0.1);
     }
+  }
+
+  &-options {
+    flex-shrink: 0;
   }
 
   &-content.mat-mdc-card-content {

@@ -53,3 +53,8 @@
 .active-dropzone * {
   pointer-events: none;
 }
+
+.task .task-header .mat-mdc-card-header-text {
+  display: flex;
+  min-width: 0;
+}

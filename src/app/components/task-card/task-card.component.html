@@ -11,13 +11,16 @@
     >
       prio-{{ task.priority }}
     </div>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button class="task-options" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon svgIcon="three-dots-horizontal"></mat-icon>
     </button>
     <mat-menu #menu="matMenu" [class]="'menu-panel'">
       <ng-template matMenuContent>
         <button mat-menu-item (click)="moreDetails()">
           <mat-icon svgIcon="view"></mat-icon>View more
+        </button>
+        <button mat-menu-item (click)="edit()">
+          <mat-icon svgIcon="edit"></mat-icon>Edit
         </button>
         <button mat-menu-item (click)="remove()">
           <mat-icon svgIcon="delete"></mat-icon>Remove

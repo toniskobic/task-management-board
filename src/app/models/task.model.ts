@@ -6,10 +6,12 @@ export interface Task {
   status: TaskStatus;
   priority: TaskPriority;
   assignee: string;
-  description: string;
-  createdAt: Moment;
+  description: string | null;
+  createdAt: Moment | null;
   dueDate: Moment;
 }
+
+export type TaskOmitId = Omit<Task, "id">;
 
 export enum TaskStatus {
   ToDo = 0,

@@ -5,14 +5,14 @@ $form-field-gap: 16px;
   flex-flow: row wrap;
   gap: $form-field-gap;
 
-  @media only screen and (max-width: $breakpoint-xs) {
+  @media screen and (max-width: $breakpoint-xs) {
     flex-direction: column;
   }
 
   & &-field {
     width: calc(50% - ($form-field-gap / 2));
 
-    @media only screen and (max-width: $breakpoint-xs) {
+    @media screen and (max-width: $breakpoint-xs) {
       width: 100%;
     }
 
@@ -23,7 +23,7 @@ $form-field-gap: 16px;
       input {
         font-size: $font-size-sm;
 
-        @media only screen and (min-width: $breakpoint-xs) {
+        @media screen and (min-width: $breakpoint-xs) {
           font-size: $font-size-base;
         }
       }
@@ -60,7 +60,7 @@ $form-field-gap: 16px;
       mat-label {
         font-size: $font-size-sm;
 
-        @media only screen and (min-width: $breakpoint-xs) {
+        @media screen and (min-width: $breakpoint-xs) {
           font-size: $font-size-base;
         }
       }

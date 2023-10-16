@@ -1,7 +1,4 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
-import { StorageService } from '../services/storage.service';
-import { StorageSchema } from '../models/storage-schema.model';
-import { Task, TaskStatus } from '../models/task.model';
 
 @Directive({
   selector: '[tmbDragDropzone]',
@@ -13,6 +10,7 @@ export class DragDropzoneDirective {
   constructor(private el: ElementRef) {}
 
   @HostListener('drop', ['$event']) async onDrop(event: DragEvent) {
+    event.preventDefault();
     this.el.nativeElement.classList.remove('active-dropzone');
     if (this.dropCallback) {
       await this.dropCallback(event);

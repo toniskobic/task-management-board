@@ -3,7 +3,7 @@ button.mdc-button {
   border-radius: $border-radius-default;
   padding-inline: 8px;
 
-  @media only screen and (min-width: $breakpoint-xs) {
+  @media screen and (min-width: $breakpoint-xs) {
     padding-inline: 16px;
   }
 
@@ -11,7 +11,7 @@ button.mdc-button {
     color: $white;
     font-size: $font-size-sm;
 
-    @media only screen and (min-width: $breakpoint-xs) {
+    @media screen and (min-width: $breakpoint-xs) {
       font-size: $font-size-base;
     }
   }

@@ -1,5 +1,4 @@
-$line-height-base: var(--line-height-base);
-$font-weight-semibold: var(--font-weight-semibold);
+@import "../../../styles/abstracts/variables";
 
 .task {
   display: flex;
@@ -10,10 +9,20 @@ $font-weight-semibold: var(--font-weight-semibold);
 
   &-detail {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 5px;
+
+    @media screen and (min-width: $breakpoint-xs) {
+      flex-direction: row;
+      gap: 10px;
+    }
 
     span:first-child {
       font-weight: $font-weight-semibold;
+    }
+
+    p:last-child {
+      word-break: break-all;
     }
   }
 }

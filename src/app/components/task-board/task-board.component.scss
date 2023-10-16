@@ -27,7 +27,7 @@
     flex-direction: column;
     gap: 10px;
 
-    @media only screen and (min-width: $breakpoint-sm) {
+    @media screen and (min-width: $breakpoint-sm) {
       flex-direction: row;
 
       & > * {

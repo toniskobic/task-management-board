@@ -3,6 +3,14 @@
 </header>
 <main>
   <div class="container">
+    <button
+      class="load-tasks-button"
+      mat-raised-button
+      color="accent"
+      (click)="addMockTasks()"
+    >
+      Load Mock Tasks
+    </button>
     <router-outlet></router-outlet>
   </div>
 </main>

@@ -65,6 +65,23 @@ ngx-mat-datepicker-content.mat-datepicker-content {
   .mat-mdc-outlined-button .mat-ripple-element {
     background-color: rgba(58, 1, 92, 0.1);
   }
+
+  .mat-mdc-button .mat-mdc-button-persistent-ripple::before,
+  .mat-mdc-unelevated-button .mat-mdc-button-persistent-ripple::before,
+  .mat-mdc-raised-button .mat-mdc-button-persistent-ripple::before,
+  .mat-mdc-outlined-button .mat-mdc-button-persistent-ripple::before {
+    background-color: $russian-violet;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .mat-mdc-button:hover .mat-mdc-button-persistent-ripple::before,
+  .mat-mdc-unelevated-button:hover .mat-mdc-button-persistent-ripple::before,
+  .mat-mdc-raised-button:hover .mat-mdc-button-persistent-ripple::before,
+  .mat-mdc-outlined-button:hover .mat-mdc-button-persistent-ripple::before {
+    opacity: 0.1;
+    background-color: $russian-violet;
+    transition: opacity 0.2s ease-in-out;
+  }
 }
 
 .mat-datepicker-toggle {

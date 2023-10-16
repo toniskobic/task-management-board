@@ -51,6 +51,10 @@
   --breakpoint-xl: #{$breakpoint-xl};
 }
 
+:root {
+  color-scheme: dark;
+}
+
 .active-dropzone * {
   pointer-events: none;
 }

@@ -19,4 +19,22 @@ button.mdc-button {
   &:not(.mdc-button--raised) {
     border: 2px solid $russian-violet;
   }
+
+  .mat-mdc-button-persistent-ripple::before {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &:hover .mat-mdc-button-persistent-ripple::before {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &.mat-mdc-button .mat-mdc-button-persistent-ripple::before {
+    background-color: $russian-violet;
+  }
+
+  &.mat-mdc-button:hover .mat-mdc-button-persistent-ripple::before {
+    opacity: 0.1;
+    background-color: $russian-violet;
+    transition: opacity 0.2s ease-in-out;
+  }
 }

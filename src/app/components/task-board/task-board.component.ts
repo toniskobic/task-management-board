@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StorageService } from 'src/app/services/storage.service';
 import { StorageSchema } from 'src/app/models/storage-schema.model';
-import { TaskStatus } from 'src/app/models/task.model';
+import { Task, TaskStatus } from 'src/app/models/task.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { TaskCategoryComponent } from '../task-category/task-category.component';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -12,6 +12,10 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EditTaskComponent } from '../edit-task-dialog/edit-task-dialog.component';
 import { DIALOG_WIDTH } from 'src/app/constants/constants';
 import { A11yModule } from '@angular/cdk/a11y';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'tmb-task-board',
@@ -23,35 +27,75 @@ import { A11yModule } from '@angular/cdk/a11y';
     TaskCardComponent,
     TaskCategoryComponent,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
     EditTaskComponent,
     A11yModule,
   ],
 })
-export class TaskBoardComponent {
+export class TaskBoardComponent implements OnInit, OnDestroy {
   TaskStatus = TaskStatus;
+
+  private destroy$ = new Subject<void>();
+
+  inputFilterControl = new FormControl<string>('', { nonNullable: true });
+
+  tasks: Task[] = [];
+  filteredTasks: Task[] = [];
+
+  get filterInputDirty() {
+    return this.inputFilterControl.value.length > 0;
+  }
+
+  get toDoTasks() {
+    return this.filteredTasks.filter((task) => task.status === TaskStatus.ToDo);
+  }
+
+  get inProgressTasks() {
+    return this.filteredTasks.filter(
+      (task) => task.status === TaskStatus.InProgress
+    );
+  }
+
+  get completedTasks() {
+    return this.filteredTasks.filter(
+      (task) => task.status === TaskStatus.Completed
+    );
+  }
 
   constructor(
     private storage: StorageService<StorageSchema>,
     private utilsService: UtilsService,
     private dialog: MatDialog
   ) {
-    this.utilsService.initSvgIcons(['add']);
+    this.utilsService.initSvgIcons(['add', 'close']);
   }
 
-  get tasks() {
-        return this.storage.getItem('tasks') || [];
+  ngOnInit() {
+    this.storage
+      .getItemObservable('tasks')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((tasks) => {
+        this.tasks = tasks || [];
+        this.filterTasks(this.inputFilterControl.value.trim());
+      });
+
+    this.inputFilterControl.valueChanges
+      .pipe(takeUntil(this.destroy$), debounceTime(0), distinctUntilChanged())
+      .subscribe((value) => this.filterTasks(value.trim()));
   }
 
-  get toDoTasks() {
-    return this.tasks.filter((task) => task.status === TaskStatus.ToDo);
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
-  get inProgressTasks() {
-    return this.tasks.filter((task) => task.status === TaskStatus.InProgress);
-  }
-  get completedTasks() {
-    return this.tasks.filter((task) => task.status === TaskStatus.Completed);
+
+  clearFilter() {
+    this.inputFilterControl.reset();
+    this.filterTasks(this.inputFilterControl.value);
   }
 
   addTask() {
@@ -60,5 +104,16 @@ export class TaskBoardComponent {
       data: { isEdit: false },
       disableClose: true,
     });
+  }
+
+  private filterTasks(value: string) {
+    this.filteredTasks = !value
+      ? this.tasks
+      : this.tasks.filter((task) =>
+          task.title
+            .concat(task.assignee)
+            .toLocaleUpperCase()
+            .includes(value.toLocaleUpperCase())
+        );
   }
 }

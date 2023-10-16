@@ -27,11 +27,18 @@ main {
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 100%;
   max-width: $breakpoint-xs;
   padding-inline: 20px;
 
   @media screen and (min-width: $breakpoint-sm) {
     max-width: $breakpoint-md;
+  }
+
+  .load-tasks-button {
+    align-self: center;
   }
 }

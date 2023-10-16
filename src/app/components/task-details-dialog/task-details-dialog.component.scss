@@ -1,0 +1,19 @@
+$line-height-base: var(--line-height-base);
+$font-weight-semibold: var(--font-weight-semibold);
+
+.task {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-block: 10px;
+  line-height: $line-height-base;
+
+  &-detail {
+    display: flex;
+    gap: 10px;
+
+    span:first-child {
+      font-weight: $font-weight-semibold;
+    }
+  }
+}

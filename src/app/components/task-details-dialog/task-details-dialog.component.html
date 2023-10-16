@@ -1,7 +1,38 @@
-<div class="dialog-container mat-app-background mat-typography" cdkTrapFocus="true">
+<div
+  class="dialog-container mat-app-background mat-typography"
+  cdkTrapFocus="true"
+>
   <h2 mat-dialog-title>Task Details</h2>
   <mat-dialog-content>
-    <p>test123</p>
+    <div class="task">
+      <div class="task-detail">
+        <span>Title:</span><span>{{ task.title }}</span>
+      </div>
+      <div class="task-detail">
+        <span>Status:</span><span> {{ statusLabels[task.status] }}</span>
+      </div>
+      <div class="task-detail">
+        <span>Priority:</span
+        ><span>{{ priorityLabels[task.priority - 1] }}</span>
+      </div>
+      <div class="task-detail">
+        <span>Assignee:</span><span> {{ task.assignee }}</span>
+      </div>
+      <div class="task-detail">
+        <span>Created At:</span
+        ><span>{{
+          task.createdAt || "" | momentDate : "DD MMM YYYY HH:mm"
+        }}</span>
+      </div>
+      <div class="task-detail">
+        <span>Due Date:</span>
+        <span>{{ task.dueDate | momentDate : "DD MMM YYYY HH:mm" }}</span>
+      </div>
+      <div class="task-detail">
+        <span>Description:</span>
+        <p>{{ task.description }}</p>
+      </div>
+    </div>
   </mat-dialog-content>
   <mat-dialog-actions [align]="'end'">
     <button

@@ -59,26 +59,6 @@
         class="form-field mat-component-density-xs"
         appearance="outline"
       >
-        <mat-label>Description</mat-label>
-        <textarea
-          matInput
-          cdkTextareaAutosize
-          cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="5"
-          formControlName="description"
-        ></textarea>
-        <mat-error>
-          <tmb-mat-error
-            label="Description"
-            [control]="form.controls.description"
-            [validators]="['maxlength']"
-          ></tmb-mat-error>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field
-        class="form-field mat-component-density-xs"
-        appearance="outline"
-      >
         <mat-label>Created At</mat-label>
         <input
           matInput
@@ -124,6 +104,26 @@
             </button>
           </ngx-mat-datepicker-actions></ngx-mat-datetime-picker
         >
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"
+          formControlName="description"
+        ></textarea>
+        <mat-error>
+          <tmb-mat-error
+            label="Description"
+            [control]="form.controls.description"
+            [validators]="['maxlength']"
+          ></tmb-mat-error>
+        </mat-error>
       </mat-form-field>
     </form>
   </mat-dialog-content>

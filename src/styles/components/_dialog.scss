@@ -15,7 +15,7 @@
         font-size: 2rem;
         line-height: $line-height-base;
         color: $white;
-        padding: 10px;
+        padding: 10px 0;
         margin: 0;
 
         &::before {
@@ -39,6 +39,7 @@
         justify-content: space-between;
         gap: 10px;
         margin-top: 16px;
+        padding-inline: 0;
 
         .mat-button-base + .mat-button-base,
         .mat-mdc-button-base + .mat-mdc-button-base {

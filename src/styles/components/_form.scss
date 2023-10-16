@@ -29,6 +29,10 @@ $form-field-gap: 16px;
       }
     }
 
+    textarea {
+      padding-right: 10px;
+    }
+
     & .mdc-text-field--disabled .mdc-text-field__input {
       color: rgba($white, 0.3);
     }

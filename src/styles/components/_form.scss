@@ -3,6 +3,7 @@ $form-field-gap: 16px;
 .form {
   display: flex;
   flex-flow: row wrap;
+  align-items: flex-start;
   gap: $form-field-gap;
 
   @media screen and (max-width: $breakpoint-xs) {

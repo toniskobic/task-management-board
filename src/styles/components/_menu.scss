@@ -20,13 +20,13 @@
     }
 
     .mat-mdc-menu-item:not([disabled]):hover {
-      background-color: rgba(var(--black-triplet), 0.1);
+      background-color: rgba($black, 0.1);
     }
 
     .mat-mdc-menu-item:not([disabled]).cdk-program-focused,
     .mat-mdc-menu-item:not([disabled]).cdk-keyboard-focused,
     .mat-mdc-menu-item:not([disabled]).mat-mdc-menu-item-highlighted {
-      background-color: rgba(var(--black-triplet), 0.1);
+      background-color: rgba($black, 0.1);
     }
   }
 }

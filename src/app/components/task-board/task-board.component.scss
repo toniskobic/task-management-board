@@ -11,9 +11,24 @@
 
   &-actions {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 10px;
+
+    .filters {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
+
+      @media screen and (min-width: $breakpoint-sm) {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .task-add {
+      margin-left: auto;
+    }
 
     .mdc-icon-button {
       width: 24px;

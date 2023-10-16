@@ -207,38 +207,6 @@ button.mat-mdc-icon-button .mat-mdc-button-touch-target {
   height: inherit;
 }
 
-div.select-panel,
-div.select-panel.mat-mdc-select-panel {
-  background-color: $onyx;
-  padding-inline: 5px;
-  border-bottom-left-radius: $border-radius-default;
-  border-bottom-right-radius: $border-radius-default;
-
-  .mat-mdc-option {
-    border-radius: $border-radius-default;
-  }
-
-  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(
-      .mat-mdc-option-multiple
-    ) {
-    background-color: rgba(var(--black-triplet), 0.1);
-  }
-
-  .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
-    background-color: rgba(var(--black-triplet), 0.1);
-  }
-
-  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
-    .mdc-list-item__primary-text {
-    color: $white;
-  }
-}
-.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
-.mat-primary
-  .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
-  color: $white;
-}
-
 .mat-mdc-form-field-error {
   font-size: $font-size-xs;
   line-height: $line-height-base;

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StorageService } from 'src/app/services/storage.service';
 import { StorageSchema } from 'src/app/models/storage-schema.model';
-import { Task, TaskStatus } from 'src/app/models/task.model';
+import { Task, TaskPriority, TaskStatus } from 'src/app/models/task.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { TaskCategoryComponent } from '../task-category/task-category.component';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -10,12 +10,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { EditTaskComponent } from '../edit-task-dialog/edit-task-dialog.component';
-import { DIALOG_WIDTH } from 'src/app/constants/constants';
+import {
+  DIALOG_WIDTH,
+  TASK_PRIORITY_LABELS,
+} from 'src/app/constants/constants';
 import { A11yModule } from '@angular/cdk/a11y';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'tmb-task-board',
@@ -29,6 +33,7 @@ import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
@@ -38,16 +43,27 @@ import { Subject, debounceTime, distinctUntilChanged, takeUntil } from 'rxjs';
 })
 export class TaskBoardComponent implements OnInit, OnDestroy {
   TaskStatus = TaskStatus;
+  taskPriorities = this.utilsService.getEnumNumberValues(TaskPriority);
+  priorityLabels = TASK_PRIORITY_LABELS;
 
   private destroy$ = new Subject<void>();
 
-  inputFilterControl = new FormControl<string>('', { nonNullable: true });
+  titleeAssigneeFilterControl = new FormControl<string>('', {
+    nonNullable: true,
+  });
+  prioritiesFilterControl = new FormControl<number[]>([1, 2, 3], {
+    nonNullable: true,
+  });
 
   tasks: Task[] = [];
   filteredTasks: Task[] = [];
 
-  get filterInputDirty() {
-    return this.inputFilterControl.value.length > 0;
+  get titleAssigneeFilterActive() {
+    return this.titleeAssigneeFilterControl.value.length > 0;
+  }
+
+  get prioritiesFilterActive() {
+    return this.prioritiesFilterControl.value.length < 3;
   }
 
   get toDoTasks() {
@@ -71,7 +87,7 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
     private utilsService: UtilsService,
     private dialog: MatDialog
   ) {
-    this.utilsService.initSvgIcons(['add', 'close']);
+    this.utilsService.initSvgIcons(['add', 'close', 'reset']);
   }
 
   ngOnInit() {
@@ -80,12 +96,23 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((tasks) => {
         this.tasks = tasks || [];
-        this.filterTasks(this.inputFilterControl.value.trim());
+        this.filterTasks(
+          this.titleeAssigneeFilterControl.value.trim(),
+          this.prioritiesFilterControl.value
+        );
       });
 
-    this.inputFilterControl.valueChanges
-      .pipe(takeUntil(this.destroy$), debounceTime(0), distinctUntilChanged())
-      .subscribe((value) => this.filterTasks(value.trim()));
+    this.titleeAssigneeFilterControl.valueChanges
+      .pipe(takeUntil(this.destroy$), distinctUntilChanged())
+      .subscribe((value) =>
+        this.filterTasks(value.trim(), this.prioritiesFilterControl.value)
+      );
+
+    this.prioritiesFilterControl.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value) => {
+        this.filterTasks(this.titleeAssigneeFilterControl.value, value);
+      });
   }
 
   ngOnDestroy() {
@@ -93,9 +120,17 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  clearFilter() {
-    this.inputFilterControl.reset();
-    this.filterTasks(this.inputFilterControl.value);
+  clearFilters(
+    titleAssigneeFilter: boolean = true,
+    prioritiesFilter: boolean = true
+  ) {
+    if (titleAssigneeFilter) this.titleeAssigneeFilterControl.reset();
+    if (prioritiesFilter) this.prioritiesFilterControl.reset([1, 2, 3]);
+
+    this.filterTasks(
+      this.titleeAssigneeFilterControl.value,
+      this.prioritiesFilterControl.value
+    );
   }
 
   addTask() {
@@ -106,14 +141,21 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
     });
   }
 
-  private filterTasks(value: string) {
-    this.filteredTasks = !value
-      ? this.tasks
-      : this.tasks.filter((task) =>
+  private filterTasks(titleAssigneeFilter: string, prioritiesFilter: number[]) {
+    if (!titleAssigneeFilter && prioritiesFilter.length === 3) {
+      this.filteredTasks = this.tasks;
+      return;
+    }
+    this.filteredTasks = this.tasks.filter((task) => {
+      return (
+        (!titleAssigneeFilter ||
           task.title
             .concat(task.assignee)
             .toLocaleUpperCase()
-            .includes(value.toLocaleUpperCase())
-        );
+            .includes(titleAssigneeFilter.toLocaleUpperCase())) &&
+        (prioritiesFilter.length === 3 ||
+          prioritiesFilter.includes(task.priority))
+      );
+    });
   }
 }

@@ -1,0 +1,133 @@
+$label-color: rgba(255, 255, 255, 0.6);
+
+.mat-mdc-form-field.select-field-standalone {
+  background-color: $onyx;
+  border-radius: $border-radius-default;
+  cursor: pointer;
+
+  label.mdc-floating-label {
+    color: rgba($white, 0.6);
+  }
+
+  .mdc-text-field--filled .mdc-line-ripple::after {
+    display: none;
+  }
+
+  .mdc-line-ripple::before {
+    display: none;
+  }
+
+  .mat-mdc-form-field-infix {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    min-height: auto;
+    gap: 5px;
+    padding-block: 14px 2px;
+  }
+
+  label.mdc-floating-label {
+    top: 50%;
+    width: 100%;
+    font-size: $font-size-sm;
+    text-overflow: ellipsis;
+
+    mat-label {
+      font-size: inherit;
+    }
+  }
+
+  &.mat-form-field-appearance-fill .mat-mdc-select-arrow-wrapper {
+    transform: translateY(-5px);
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mdc-floating-label--float-above
+    + .mat-mdc-select
+    .mat-mdc-select-arrow-wrapper {
+    transform: translateY(0px);
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused
+    .mdc-floating-label,
+  .mdc-text-field--filled:not(.mdc-text-field--disabled).mdc-text-field--focused
+    .mdc-floating-label--float-above {
+    color: rgba($white, 0.6);
+  }
+
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: inherit;
+    border-radius: $border-radius-default;
+  }
+
+  .mat-mdc-select {
+    color: $white;
+    line-height: $line-height-base;
+
+    .mat-mdc-select-arrow {
+      color: $white;
+    }
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  .mat-mdc-form-field-focus-overlay {
+    opacity: 0;
+  }
+}
+
+div.select-panel,
+div.select-panel.mat-mdc-select-panel {
+  background-color: $onyx;
+  padding-inline: 5px;
+  border-bottom-left-radius: $border-radius-default;
+  border-bottom-right-radius: $border-radius-default;
+
+  .mat-mdc-option {
+    border-radius: $border-radius-default;
+  }
+
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(
+      .mat-mdc-option-multiple
+    ) {
+    background-color: rgba($black, 0.1);
+  }
+
+  .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+    background-color: rgba($black, 0.1);
+  }
+
+  .mat-mdc-option:focus.mdc-list-item,
+  .mat-mdc-option.mat-mdc-option-active.mdc-list-item {
+    background-color: rgba($black, 0.1);
+  }
+
+  .mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled)
+    .mdc-list-item__primary-text {
+    color: $white;
+  }
+}
+
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
+.mat-primary
+  .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+  color: $white;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-full,
+.mat-primary .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-full {
+  background: $russian-violet;
+}
+
+.mat-pseudo-checkbox-full {
+  color: $russian-violet;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-full::after,
+.mat-primary
+  .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-full::after {
+  color: $white;
+}

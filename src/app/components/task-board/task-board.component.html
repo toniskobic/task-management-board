@@ -1,15 +1,47 @@
 <div class="board">
   <div class="board-actions">
-    <mat-form-field class="input-field-standalone padding-r-s">
-      <mat-label title="Filter by title or assignee"
-        >Filter by title or assignee</mat-label
-      >
-      <input matInput type="text" [formControl]="inputFilterControl" />
-      <button *ngIf="filterInputDirty" mat-icon-button (click)="clearFilter()">
-        <mat-icon svgIcon="close"></mat-icon>
-      </button>
-    </mat-form-field>
-    <button mat-icon-button (click)="addTask()">
+    <div class="filters">
+      <mat-form-field class="input-field-standalone padding-r-s">
+        <mat-label title="Filter by title or assignee"
+          >Filter by title or assignee</mat-label
+        >
+        <input
+          matInput
+          type="text"
+          [formControl]="titleeAssigneeFilterControl"
+        />
+        <button
+          *ngIf="titleAssigneeFilterActive"
+          mat-icon-button
+          (click)="clearFilters(true, false)"
+        >
+          <mat-icon svgIcon="close"></mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field class="select-field-standalone">
+        <mat-label title="Filter by priority">Filter by priority</mat-label>
+        <mat-select
+          panelClass="select-panel"
+          multiple
+          [formControl]="prioritiesFilterControl"
+        >
+          <mat-option
+            *ngFor="let priority of taskPriorities"
+            [value]="priority"
+          >
+            {{ priorityLabels[priority - 1] }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button
+      *ngIf="titleAssigneeFilterActive && prioritiesFilterActive"
+      mat-icon-button
+      (click)="clearFilters()"
+    >
+      <mat-icon svgIcon="reset"></mat-icon>
+    </button>
+    <button class="task-add" mat-icon-button (click)="addTask()">
       <mat-icon svgIcon="add"></mat-icon>
     </button>
   </div>

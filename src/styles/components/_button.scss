@@ -1,0 +1,22 @@
+button.mdc-button {
+  color: $white;
+  border-radius: $border-radius-default;
+  padding-inline: 8px;
+
+  @media only screen and (min-width: $breakpoint-xs) {
+    padding-inline: 16px;
+  }
+
+  .mdc-button__label {
+    color: $white;
+    font-size: $font-size-sm;
+
+    @media only screen and (min-width: $breakpoint-xs) {
+      font-size: $font-size-base;
+    }
+  }
+
+  &:not(.mdc-button--raised) {
+    border: 2px solid $russian-violet;
+  }
+}

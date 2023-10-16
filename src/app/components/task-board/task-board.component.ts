@@ -9,7 +9,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { EditTaskComponent } from '../edit-task/edit-task.component';
+import { EditTaskComponent } from '../edit-task-dialog/edit-task-dialog.component';
 import { DIALOG_WIDTH } from 'src/app/constants/constants';
 import { A11yModule } from '@angular/cdk/a11y';
 
@@ -41,7 +41,7 @@ export class TaskBoardComponent {
   }
 
   get tasks() {
-    return this.storage.getItem('tasks') || [];
+        return this.storage.getItem('tasks') || [];
   }
 
   get toDoTasks() {
@@ -58,21 +58,7 @@ export class TaskBoardComponent {
     this.dialog.open(EditTaskComponent, {
       width: DIALOG_WIDTH,
       data: { isEdit: false },
+      disableClose: true,
     });
-    // const status = Math.floor(Math.random() * 3);
-    // const priority = Math.floor(Math.random() * 3) + 1;
-    // this.storage.setItem('tasks', [
-    //   ...this.tasks,
-    //   {
-    //     id: v4(),
-    //     title: 'Task 1',
-    //     description: 'Task 1',
-    //     status: status,
-    //     priority: priority,
-    //     assignee: 'John Doe',
-    //     createdAt: moment(),
-    //     dueDate: moment().add(1, 'days'),
-    //   },
-    // ]);
   }
 }

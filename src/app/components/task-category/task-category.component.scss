@@ -1,10 +1,4 @@
-$border-radius-default: var(--border-radius-default);
-$raisin-black: var(--raisin-black);
-$onyx: var(--onyx);
-$light-violet: var(--light-violet);
-$yellow: var(--yellow);
-$green: var(--green);
-$font-size-xl: var(--font-size-xl);
+@import "../../../styles/abstracts/variables";
 
 .category {
   display: flex;
@@ -20,6 +14,8 @@ $font-size-xl: var(--font-size-xl);
     gap: 10px;
 
     mat-icon {
+      flex-shrink: 0;
+
       &.todo {
         color: $light-violet;
       }
@@ -35,8 +31,16 @@ $font-size-xl: var(--font-size-xl);
   }
 
   &-title {
-    font-size: $font-size-xl;
+    font-size: $font-size-lg;
     margin: 0;
+    min-width: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+
+    @media screen and (min-width: $breakpoint-xs) {
+      font-size: $font-size-xl;
+    }
   }
 
   &-content {
@@ -45,7 +49,7 @@ $font-size-xl: var(--font-size-xl);
     gap: 5px;
 
     &:empty {
-      padding-bottom: 50px;
+      padding-bottom: 105px;
     }
   }
 }

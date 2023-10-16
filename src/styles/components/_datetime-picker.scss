@@ -58,8 +58,19 @@ ngx-mat-datepicker-content.mat-datepicker-content {
   .mat-datepicker-actions .mat-mdc-button-base + .mat-mdc-button-base {
     border-radius: $border-radius-default;
   }
+
+  .mat-mdc-button .mat-ripple-element,
+  .mat-mdc-unelevated-button .mat-ripple-element,
+  .mat-mdc-raised-button .mat-ripple-element,
+  .mat-mdc-outlined-button .mat-ripple-element {
+    background-color: rgba(58, 1, 92, 0.1);
+  }
 }
 
 .mat-datepicker-toggle {
   color: $white;
+
+  .mat-mdc-icon-button[disabled][disabled] {
+    color: rgba($white, 0.3);
+  }
 }

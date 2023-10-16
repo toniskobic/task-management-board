@@ -1,0 +1,136 @@
+<div class="dialog-container mat-app-background mat-typography">
+  <h2 mat-dialog-title>{{ data.isEdit ? "Edit" : "Create" }} Task</h2>
+  <mat-dialog-content>
+    <form [formGroup]="form" class="form">
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" type="text" />
+        <mat-error>
+          <tmb-mat-error
+            label="Title"
+            [control]="form.controls.title"
+            [validators]="['required', 'minlength', 'maxlength']"
+          ></tmb-mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" panelClass="select-panel">
+          <mat-option *ngFor="let status of taskStatuses" [value]="status">
+            {{ statusLabels[status] }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Priority</mat-label>
+        <mat-select formControlName="priority" panelClass="select-panel">
+          <mat-option
+            *ngFor="let priority of taskPriorities"
+            [value]="priority"
+          >
+            {{ priorityLabels[priority - 1] }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Assignee</mat-label>
+        <input matInput formControlName="assignee" type="text" />
+        <mat-error>
+          <tmb-mat-error
+            label="Assignee"
+            [control]="form.controls.assignee"
+            [validators]="['maxlength']"
+          ></tmb-mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"
+          formControlName="description"
+        ></textarea>
+        <mat-error>
+          <tmb-mat-error
+            label="Description"
+            [control]="form.controls.description"
+            [validators]="['maxlength']"
+          ></tmb-mat-error>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Created At</mat-label>
+        <input
+          matInput
+          [ngxMatDatetimePicker]="createdAtDatePicker"
+          type="datetime"
+          formControlName="createdAt"
+        />
+        <ngx-mat-datepicker-toggle
+          matSuffix
+          [for]="createdAtDatePicker"
+        ></ngx-mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #createdAtDatePicker [color]="'accent'">
+          <ngx-mat-datepicker-actions>
+            <button mat-button ngxMatDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="accent" ngxMatDatepickerApply>
+              Apply
+            </button>
+          </ngx-mat-datepicker-actions></ngx-mat-datetime-picker
+        >
+      </mat-form-field>
+      <mat-form-field
+        class="form-field mat-component-density-xs"
+        appearance="outline"
+      >
+        <mat-label>Due Date</mat-label>
+        <input
+          matInput
+          [ngxMatDatetimePicker]="dueDatePicker"
+          type="datetime"
+          formControlName="dueDate"
+        />
+        <ngx-mat-datepicker-toggle
+          matSuffix
+          [for]="dueDatePicker"
+        ></ngx-mat-datepicker-toggle>
+        <ngx-mat-datetime-picker #dueDatePicker [color]="'accent'">
+          <ngx-mat-datepicker-actions>
+            <button mat-button color="accent" ngxMatDatepickerCancel>
+              Cancel
+            </button>
+            <button mat-raised-button color="accent" ngxMatDatepickerApply>
+              Apply
+            </button>
+          </ngx-mat-datepicker-actions></ngx-mat-datetime-picker
+        >
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button color="accent" mat-button [mat-dialog-close]="true">Close</button>
+    <button color="accent" mat-raised-button (click)="save()">
+      {{ data.isEdit ? "Save" : "Create" }}
+    </button>
+  </mat-dialog-actions>
+</div>

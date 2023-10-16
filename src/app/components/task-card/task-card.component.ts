@@ -11,9 +11,10 @@ import { StorageService } from 'src/app/services/storage.service';
 import { StorageSchema } from 'src/app/models/storage-schema.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TaskDetailsDialogComponent } from '../task-details-dialog/task-details-dialog.component';
-import { EditTaskComponent } from '../edit-task/edit-task.component';
+import { EditTaskComponent } from '../edit-task-dialog/edit-task-dialog.component';
 import { DIALOG_WIDTH } from 'src/app/constants/constants';
 import { A11yModule } from '@angular/cdk/a11y';
+import { MomentDatePipe } from 'src/app/pipes/moment-date.pipe';
 
 @Component({
   selector: 'tmb-task-card',
@@ -22,6 +23,7 @@ import { A11yModule } from '@angular/cdk/a11y';
     CommonModule,
     MatCardModule,
     DraggableDirective,
+    MomentDatePipe,
     A11yModule,
     MatIconModule,
     MatButtonModule,
@@ -46,6 +48,8 @@ export class TaskCardComponent {
       'view',
       'delete',
       'edit',
+      'calendar-day-highlighted',
+      'person',
     ]);
   }
 
@@ -60,6 +64,7 @@ export class TaskCardComponent {
     this.dialog.open(EditTaskComponent, {
       width: DIALOG_WIDTH,
       data: { isEdit: true, task: this.task },
+      disableClose: true,
     });
   }
 

@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   border-radius: $border-radius-default;
-  padding: 10px;
+  padding: 10px 7px;
   background-color: $raisin-black;
   gap: 10px;
 
@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    padding-inline: 3px;
 
     mat-icon {
       flex-shrink: 0;
@@ -47,6 +48,9 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    padding-inline: 3px;
+    max-height: 50vh;
+    overflow-y: auto;
 
     &:empty {
       padding-bottom: 105px;

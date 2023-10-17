@@ -9,7 +9,7 @@ import { UtilsService } from 'src/app/services/utils.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { EditTaskComponent } from '../edit-task-dialog/edit-task-dialog.component';
+import { EditTaskDialogComponent } from '../edit-task-dialog/edit-task-dialog.component';
 import {
   DIALOG_WIDTH,
   TASK_PRIORITY_LABELS,
@@ -39,7 +39,7 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
-    EditTaskComponent,
+    EditTaskDialogComponent,
     A11yModule,
   ],
 })
@@ -165,7 +165,7 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
   }
 
   addTask() {
-    this.dialog.open(EditTaskComponent, {
+    this.dialog.open(EditTaskDialogComponent, {
       width: DIALOG_WIDTH,
       data: { isEdit: false },
       disableClose: true,

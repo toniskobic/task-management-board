@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject } from '@angular/core';
+import { Component, HostListener, Inject, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -71,7 +71,7 @@ import { DialogRef } from '@angular/cdk/dialog';
     MatErrorComponent,
   ],
 })
-export class EditTaskComponent {
+export class EditTaskDialogComponent {
   taskStatuses = this.utilsService.getEnumNumberValues(TaskStatus);
   taskPriorities = this.utilsService.getEnumNumberValues(TaskPriority);
   statusLabels = TASK_STATUS_LABELS;
@@ -82,7 +82,7 @@ export class EditTaskComponent {
   constructor(
     private storage: StorageService<StorageSchema>,
     private utilsService: UtilsService,
-    private dialog: DialogRef<EditTaskComponent>,
+    private dialog: DialogRef<EditTaskDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { task: Task; isEdit: boolean }
   ) {
     this.createForm();

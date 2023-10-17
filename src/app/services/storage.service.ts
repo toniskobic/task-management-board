@@ -61,4 +61,8 @@ export class StorageService<T> {
       };
     });
   }
+
+  clear() {
+    this.storage.clear();
+  }
 }

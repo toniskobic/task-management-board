@@ -1,6 +1,7 @@
 .mat-mdc-dialog-container {
   div.mdc-dialog__surface {
     background-color: $onyx;
+    border-radius: $border-radius-xl;
 
     div.dialog-container {
       padding: 10px;

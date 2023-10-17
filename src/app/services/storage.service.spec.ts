@@ -39,6 +39,24 @@ describe('StorageService', () => {
     expect(retrievedValue).toBeNull();
   });
 
+  it('should clear all items', () => {
+    const key1 = 'exampleValue1';
+    const key2 = 'exampleValue2';
+    const value1 = 'testValue1';
+    const value2 = 'testValue2';
+
+    storageService.setItem(key1, value1);
+    storageService.setItem(key2, value2);
+
+    storageService.clear();
+
+    const retrievedValue1 = storageService.getItem(key1);
+    const retrievedValue2 = storageService.getItem(key2);
+
+    expect(retrievedValue1).toBeNull();
+    expect(retrievedValue2).toBeNull();
+  });
+
   it('should create an observable for item updates and emit values', (done) => {
     const key = 'exampleValue';
     const updatedValue = 'updatedValue';

@@ -38,7 +38,8 @@ main {
     max-width: $breakpoint-md;
   }
 
-  .load-tasks-button {
+  .load-tasks-button,
+  .clear-tasks-button {
     align-self: center;
   }
 }

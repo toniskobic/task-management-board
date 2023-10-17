@@ -64,5 +64,6 @@ export class StorageService<T> {
 
   clear() {
     this.storage.clear();
+    this.valueUpdateMap.forEach((value) => value.next(null));
   }
 }

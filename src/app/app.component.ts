@@ -22,4 +22,8 @@ export class AppComponent {
     const tasks = this.storage.getItem('tasks') || [];
     this.storage.setItem('tasks', [...tasks, ...this.mockedTasks()]);
   }
+
+  clearTasks() {
+    this.storage.clear();
+  }
 }

@@ -1,27 +1,15 @@
 import { EditTaskDialogComponent } from './edit-task-dialog.component';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  MatDialogModule,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-import {
-  Task,
-  TaskFormModel,
-  TaskPriority,
-  TaskStatus,
-} from 'src/app/models/task.model';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Task, TaskPriority, TaskStatus } from 'src/app/models/task.model';
 import { UtilsService } from 'src/app/services/utils.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { v4 } from 'uuid';
 import { StorageSchema } from 'src/app/models/storage-schema.model';
 import * as moment from 'moment';
 import { provideHttpClient } from '@angular/common/http';
-import {
-  HttpTestingController,
-  provideHttpClientTesting,
-} from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { DialogRef } from '@angular/cdk/dialog';
 
@@ -49,7 +37,6 @@ describe('EditTaskDialogComponent', () => {
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
-
         provideRouter([]),
         UtilsService,
         StorageService,

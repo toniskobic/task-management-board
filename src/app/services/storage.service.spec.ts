@@ -4,6 +4,7 @@ interface TestStorageSchema {
   exampleValue: string;
   exampleValue1: string;
   exampleValue2: string;
+  nonExistentKey: string;
 }
 
 import { StorageService } from './storage.service';
@@ -32,9 +33,7 @@ describe('StorageService', () => {
 
   it('should return null when getting an item that does not exist in local storage', () => {
     const key = 'nonExistentKey';
-    const retrievedValue = storageService.getItem(
-      key as keyof TestStorageSchema
-    );
+    const retrievedValue = storageService.getItem(key);
 
     expect(retrievedValue).toBeNull();
   });

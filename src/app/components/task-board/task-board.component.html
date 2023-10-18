@@ -7,7 +7,7 @@
         <button
           *ngIf="titleFilterActive"
           mat-icon-button
-          (click)="clearFilters(true, false)"
+          (click)="clearFilters(true, false, false)"
         >
           <mat-icon svgIcon="close"></mat-icon>
         </button>
@@ -18,7 +18,7 @@
         <button
           *ngIf="assigneeFilterActive"
           mat-icon-button
-          (click)="clearFilters(false, true)"
+          (click)="clearFilters(false, true, false)"
         >
           <mat-icon svgIcon="close"></mat-icon>
         </button>

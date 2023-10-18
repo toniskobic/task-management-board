@@ -2,6 +2,12 @@
 
 Task management board is an Angular application designed to help users manage their tasks efficiently. It provides a user-friendly interface with features such as task creation, drag-and-drop functionality, filtering, and more.
 
+Production deployed app: [Task Management Board](https://task-management-board-tskobic.vercel.app/)
+
+## Installing dependencies
+
+Run `npm install` to fetch and install all the required libraries and project dependencies.
+
 ## Development server
 
 Run `npm run start` or `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

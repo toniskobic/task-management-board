@@ -62,6 +62,7 @@ describe('StorageService', () => {
 
     observable.subscribe((value) => {
       if (value === updatedValue) {
+        expect(value).toBe(updatedValue);
         done();
       }
     });

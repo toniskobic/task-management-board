@@ -14,11 +14,11 @@ Run `npm run start` or `ng serve` for a dev server. Navigate to `http://localhos
 
 ## Running unit tests
 
-Run `npm run test` `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm run test` or `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Build
 
-Run `npm run build` `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `npm run build` or `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Legend
 :white_check_mark: Implemented feature

@@ -5,7 +5,6 @@ import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Task, TaskPriority, TaskStatus } from 'src/app/models/task.model';
 import { UtilsService } from 'src/app/services/utils.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { v4 } from 'uuid';
 import { StorageSchema } from 'src/app/models/storage-schema.model';
 import * as moment from 'moment';
 import { provideHttpClient } from '@angular/common/http';
@@ -62,7 +61,6 @@ describe('EditTaskDialogComponent', () => {
     spyOn(storageService, 'setItem'); // Mock setItem method
     spyOn(mockDialogRef, 'close'); // Mock dialog close method
 
-    const id = v4();
     const createdAt = moment();
     const dueDate = moment().add(1, 'days');
 

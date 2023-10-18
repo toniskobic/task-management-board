@@ -1,5 +1,3 @@
-import TypedStorage, { RetrievalMode } from 'typed-local-store';
-
 interface TestStorageSchema {
   exampleValue: string;
   exampleValue1: string;

@@ -42,6 +42,7 @@ import { StorageSchema } from 'src/app/models/storage-schema.model';
 import { v4 } from 'uuid';
 import { MatErrorComponent } from '../mat-error/mat-error.component';
 import { DialogRef } from '@angular/cdk/dialog';
+import { noWhitespaceValidator } from 'src/app/validators/no-whitespace.validator';
 
 @Component({
   selector: 'tmb-edit-task',
@@ -96,6 +97,7 @@ export class EditTaskDialogComponent {
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(255),
+          noWhitespaceValidator
         ],
       }),
       status: new FormControl(

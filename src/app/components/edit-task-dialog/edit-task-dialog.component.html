@@ -12,7 +12,7 @@
           <tmb-mat-error
             label="Title"
             [control]="form.controls.title"
-            [validators]="['required', 'minlength', 'maxlength']"
+            [validators]="['required', 'minlength', 'maxlength', 'whitespace']"
           ></tmb-mat-error>
         </mat-error>
       </mat-form-field>

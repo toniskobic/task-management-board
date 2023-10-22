@@ -207,8 +207,13 @@ button.mat-mdc-icon-button .mat-mdc-button-touch-target {
   height: inherit;
 }
 
+div.mat-mdc-form-field-hint-wrapper,
+div.mat-mdc-form-field-error-wrapper {
+  padding: 0;
+}
+
 .mat-mdc-form-field-error {
-  font-size: $font-size-xs;
+  font-size: $font-size-2xs;
   line-height: $line-height-base;
   letter-spacing: normal;
   word-break: break-all;

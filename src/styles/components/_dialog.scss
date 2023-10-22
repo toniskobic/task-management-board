@@ -4,9 +4,13 @@
     border-radius: $border-radius-xl;
 
     div.dialog-container {
+      display: flex;
+      flex-direction: column;
       padding: 10px;
       background-color: $onyx;
       color: $white;
+      max-height: 90vh;
+      max-height: calc(var(--vh, 1vh) * 90);
 
       @media screen and (min-width: $breakpoint-xs) {
         padding: 15px 30px;

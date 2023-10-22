@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { StorageSchema } from './models/storage-schema.model';
@@ -13,10 +13,19 @@ import { mockTasks } from './constants/constants';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   mockedTasks = mockTasks;
+  vh = window.innerHeight * 0.01;
 
   constructor(private storage: StorageService<StorageSchema>) {}
+
+  ngOnInit() {
+    document.documentElement.style.setProperty('--vh', `${this.vh}px`);
+    window.addEventListener('resize', () => {
+      this.vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${this.vh}px`);
+    });
+  }
 
   addMockTasks() {
     const tasks = this.storage.getItem('tasks') || [];

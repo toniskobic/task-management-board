@@ -4,6 +4,10 @@
     >{{ label }} is a required field.
   </ng-container>
   <ng-container
+    *ngIf="validators.includes('whitespace') && control?.errors?.['whitespace']"
+    >{{ label }} can't have only whitespaces.
+  </ng-container>
+  <ng-container
     *ngIf="validators.includes('minlength') && control?.errors?.['minlength']"
     >{{ label }} has a min length of {{ minLengthValue }} characters.
   </ng-container>

@@ -3,6 +3,8 @@ ngx-mat-datepicker-content.mat-datepicker-content {
   background-color: $onyx;
   color: $white;
   font-size: $font-size-sm;
+  max-height: 80vh;
+  overflow: auto;
 
   & * {
     font-size: inherit;

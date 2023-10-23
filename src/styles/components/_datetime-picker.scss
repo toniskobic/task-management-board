@@ -4,6 +4,7 @@ ngx-mat-datepicker-content.mat-datepicker-content {
   color: $white;
   font-size: $font-size-sm;
   max-height: 80vh;
+  max-height: calc(var(--vh, 1vh) * 80);
   overflow: auto;
 
   & * {

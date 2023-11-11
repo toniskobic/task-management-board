@@ -1,8 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  computed,
+} from '@angular/core';
+import { toSignal, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { StorageService } from 'src/app/services/storage.service';
 import { StorageSchema } from 'src/app/models/storage-schema.model';
-import { Task, TaskPriority, TaskStatus } from 'src/app/models/task.model';
+import { TaskPriority, TaskStatus } from 'src/app/models/task.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { TaskCategoryComponent } from '../task-category/task-category.component';
 import { UtilsService } from 'src/app/services/utils.service';
@@ -18,7 +24,7 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Subject, distinctUntilChanged, takeUntil } from 'rxjs';
+import { map } from 'rxjs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -42,13 +48,12 @@ import { MatSelectModule } from '@angular/material/select';
     EditTaskDialogComponent,
     A11yModule,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskBoardComponent implements OnInit, OnDestroy {
+export class TaskBoardComponent {
   TaskStatus = TaskStatus;
-  taskPriorities = this.utilsService.getEnumNumberValues(TaskPriority);
+  taskPriorities = this.utils.getEnumNumberValues(TaskPriority);
   priorityLabels = TASK_PRIORITY_LABELS;
-
-  private destroy$ = new Subject<void>();
 
   titleFilterControl = new FormControl<string>('', {
     nonNullable: true,
@@ -60,92 +65,55 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
     nonNullable: true,
   });
 
-  tasks: Task[] = [];
-  filteredTasks: Task[] = [];
+  titleFilter = this.utils.toSignalFromControl(this.titleFilterControl);
 
-  get titleFilterActive() {
-    return this.titleFilterControl.value.length > 0;
-  }
+  assigneeFilter = this.utils.toSignalFromControl(this.assigneeFilterControl);
 
-  get assigneeFilterActive() {
-    return this.assigneeFilterControl.value.length > 0;
-  }
+  prioritiesFilter = this.utils.toSignalFromControl(
+    this.prioritiesFilterControl
+  );
 
-  get prioritiesFilterActive() {
-    return this.prioritiesFilterControl.value.length < 3;
-  }
+  tasks = toSignal(
+    this.storage.getItemObservable('tasks').pipe(
+      takeUntilDestroyed(this.destroyRef),
+      map((tasks) => tasks || [])
+    ),
+    { requireSync: true }
+  );
 
-  get toDoTasks() {
-    return this.filteredTasks.filter((task) => task.status === TaskStatus.ToDo);
-  }
+  filteredTasks = computed(this.computeFilteredTasks.bind(this));
 
-  get inProgressTasks() {
-    return this.filteredTasks.filter(
+  titleFilterActive = computed(() => this.titleFilter().length);
+
+  assigneeFilterActive = computed(() => this.assigneeFilter().length);
+
+  prioritiesFilterActive = computed(() => this.prioritiesFilter().length < 3);
+
+  toDoTasks = computed(() => {
+    return this.filteredTasks()?.filter(
+      (task) => task.status === TaskStatus.ToDo
+    );
+  });
+
+  inProgressTasks = computed(() => {
+    return this.filteredTasks()?.filter(
       (task) => task.status === TaskStatus.InProgress
     );
-  }
+  });
 
-  get completedTasks() {
-    return this.filteredTasks.filter(
+  completedTasks = computed(() => {
+    return this.filteredTasks()?.filter(
       (task) => task.status === TaskStatus.Completed
     );
-  }
+  });
 
   constructor(
+    private destroyRef: DestroyRef,
     private storage: StorageService<StorageSchema>,
-    private utilsService: UtilsService,
+    private utils: UtilsService,
     private dialog: MatDialog
   ) {
-    this.utilsService.initSvgIcons(['add', 'close', 'reset']);
-  }
-
-  ngOnInit() {
-    this.storage
-      .getItemObservable('tasks')
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((tasks) => {
-        this.tasks = tasks || [];
-        this.filterTasks(
-          this.titleFilterControl.value.trim(),
-          this.assigneeFilterControl.value.trim(),
-          this.prioritiesFilterControl.value
-        );
-      });
-
-    this.titleFilterControl.valueChanges
-      .pipe(takeUntil(this.destroy$), distinctUntilChanged())
-      .subscribe((value) =>
-        this.filterTasks(
-          value.trim(),
-          this.assigneeFilterControl.value,
-          this.prioritiesFilterControl.value
-        )
-      );
-
-    this.assigneeFilterControl.valueChanges
-      .pipe(takeUntil(this.destroy$), distinctUntilChanged())
-      .subscribe((value) =>
-        this.filterTasks(
-          this.titleFilterControl.value,
-          value.trim(),
-          this.prioritiesFilterControl.value
-        )
-      );
-
-    this.prioritiesFilterControl.valueChanges
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((value) => {
-        this.filterTasks(
-          this.titleFilterControl.value,
-          this.assigneeFilterControl.value,
-          value
-        );
-      });
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
+    this.utils.initSvgIcons(['add', 'close', 'reset']);
   }
 
   clearFilters(
@@ -156,12 +124,6 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
     if (titleFilter) this.titleFilterControl.reset();
     if (assigneeFilter) this.assigneeFilterControl.reset();
     if (prioritiesFilter) this.prioritiesFilterControl.reset([1, 2, 3]);
-
-    this.filterTasks(
-      this.titleFilterControl.value,
-      this.assigneeFilterControl.value,
-      this.prioritiesFilterControl.value
-    );
   }
 
   addTask() {
@@ -172,26 +134,27 @@ export class TaskBoardComponent implements OnInit, OnDestroy {
     });
   }
 
-  private filterTasks(
-    titleFilter: string,
-    assigneeFilter: string,
-    prioritiesFilter: number[]
-  ) {
-    if (!titleFilter && !assigneeFilter && prioritiesFilter.length === 3) {
-      this.filteredTasks = this.tasks;
-      return;
+  private computeFilteredTasks() {
+    const tasks = this.tasks();
+    const titleFilter = this.titleFilter();
+    const assigneeFilter = this.assigneeFilter();
+    const prioritiesFilter = this.prioritiesFilter();
+
+    if (!titleFilter && !assigneeFilter && prioritiesFilter?.length === 3) {
+      return tasks;
     }
-    this.filteredTasks = this.tasks.filter((task) => {
+
+    return tasks?.filter((task) => {
       return (
         (!titleFilter ||
           task.title
             .toLocaleUpperCase()
-            .includes(titleFilter.toLocaleUpperCase())) &&
+            .includes(titleFilter?.toLocaleUpperCase())) &&
         (!assigneeFilter ||
           task.assignee
             .toLocaleUpperCase()
             .includes(assigneeFilter.toLocaleUpperCase())) &&
-        (prioritiesFilter.length === 3 ||
+        (prioritiesFilter?.length === 3 ||
           prioritiesFilter.includes(task.priority))
       );
     });

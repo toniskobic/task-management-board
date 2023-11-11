@@ -1,5 +1,7 @@
 @import "../../../styles/abstracts/variables";
 
+$icon-size: 24px;
+
 .board {
   display: flex;
   flex-direction: column;
@@ -24,6 +26,17 @@
         flex-direction: row;
         align-items: center;
       }
+
+      .prio-filter {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        button {
+          position: absolute;
+          right: calc(-10px - $icon-size);
+        }
+      }
     }
 
     .task-add {
@@ -31,8 +44,8 @@
     }
 
     .mdc-icon-button {
-      width: 24px;
-      height: 24px;
+      width: $icon-size;
+      height: $icon-size;
       padding: 0;
     }
   }

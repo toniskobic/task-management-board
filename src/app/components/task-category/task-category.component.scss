@@ -29,6 +29,19 @@
         color: $green;
       }
     }
+
+    .task-count {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: $onyx;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-bold;
+    }
   }
 
   &-title {

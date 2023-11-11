@@ -1,4 +1,13 @@
-import { Component, HostListener, Inject, Optional } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  HostListener,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -19,9 +28,10 @@ import {
   NGX_MAT_DATE_FORMATS,
   NgxMatDateAdapter,
   NgxMatDatetimePickerModule,
+  NgxMatDatetimepicker,
   NgxMatNativeDateModule,
 } from '@angular-material-components/datetime-picker';
-import * as moment from 'moment';
+import moment from 'moment';
 import {
   DATETIME_FORMAT,
   TASK_PRIORITY_LABELS,
@@ -71,22 +81,40 @@ import { noWhitespaceValidator } from 'src/app/validators/no-whitespace.validato
     MatDialogModule,
     MatErrorComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditTaskDialogComponent {
+export class EditTaskDialogComponent implements OnInit {
   taskStatuses = this.utilsService.getEnumNumberValues(TaskStatus);
   taskPriorities = this.utilsService.getEnumNumberValues(TaskPriority);
   statusLabels = TASK_STATUS_LABELS;
   priorityLabels = TASK_PRIORITY_LABELS;
 
+  @ViewChild('dueDatePicker', {
+    static: true,
+  })
+  dueDateRef!: NgxMatDatetimepicker<any>;
+
   form!: ModelFormGroup<TaskFormModel>;
 
   constructor(
+    private destroyRef: DestroyRef,
     private storage: StorageService<StorageSchema>,
     private utilsService: UtilsService,
     private dialog: DialogRef<EditTaskDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { task: Task; isEdit: boolean }
   ) {
     this.createForm();
+  }
+
+  ngOnInit(): void {
+    this.dueDateRef.openedStream
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        setTimeout(
+          () => this.getDatePickerEl()?.classList.add('overflow'),
+          200
+        );
+      });
   }
 
   createForm() {
@@ -97,7 +125,7 @@ export class EditTaskDialogComponent {
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(255),
-          noWhitespaceValidator
+          noWhitespaceValidator,
         ],
       }),
       status: new FormControl(
@@ -161,6 +189,12 @@ export class EditTaskDialogComponent {
       this.storage.setItem('tasks', updatedTasks);
       this.dialog.close();
     }
+  }
+
+  private getDatePickerEl() {
+    return document.querySelector(
+      'ngx-mat-datepicker-content.mat-datepicker-content'
+    );
   }
 
   @HostListener('keydown.esc') close() {

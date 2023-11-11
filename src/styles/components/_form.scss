@@ -55,7 +55,7 @@ $form-field-gap: 22px;
       color: rgba($white, 0.3);
     }
 
-    label.mdc-floating-label {
+    .mdc-text-field label.mdc-floating-label {
       color: $white;
 
       mat-label {
@@ -200,7 +200,7 @@ $form-field-gap: 22px;
   }
 
   & .mdc-text-field--disabled .mdc-floating-label {
-    color: rgba($white, 0.3);
+    color: rgba($white, 0.3) !important;
   }
 
   label.mdc-floating-label.mat-mdc-floating-label {

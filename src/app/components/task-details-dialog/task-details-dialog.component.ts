@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,9 +13,16 @@ import { MomentDatePipe } from 'src/app/pipes/moment-date.pipe';
 @Component({
   selector: 'tmb-task-details-dialog',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatButtonModule, A11yModule, MomentDatePipe],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatButtonModule,
+    A11yModule,
+    MomentDatePipe,
+  ],
   templateUrl: './task-details-dialog.component.html',
   styleUrls: ['./task-details-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskDetailsDialogComponent {
   statusLabels = TASK_STATUS_LABELS;

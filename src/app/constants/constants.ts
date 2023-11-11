@@ -1,7 +1,7 @@
 import { NgxMatDateFormats } from '@angular-material-components/datetime-picker';
 import { TaskPriority, TaskStatus } from '../models/task.model';
 import { v4 } from 'uuid';
-import * as moment from 'moment';
+import moment from 'moment';
 
 export const DATETIME_FORMAT: NgxMatDateFormats = {
   parse: {
@@ -19,7 +19,11 @@ export const DIALOG_WIDTH = '640px';
 
 export const TASK_STATUS_LABELS = ['To Do', 'In Progress', 'Completed'];
 
-export const TASK_PRIORITY_LABELS = ['High', 'Medium', 'Low'];
+export const TASK_PRIORITY_LABELS = [
+  'High (prio 1)',
+  'Medium (prio 2)',
+  'Low (prio 3)',
+];
 
 export const DATETIME_OUTPUT_FORMAT = 'DD.MM.YYYY HH:mm';
 

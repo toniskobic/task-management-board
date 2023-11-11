@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { FormControl } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -30,5 +32,9 @@ export class UtilsService {
       }
     }
     return enumValues;
+  }
+
+  toSignalFromControl<T>(control: FormControl<T>) {
+    return toSignal(control.valueChanges, { initialValue: control.value });
   }
 }

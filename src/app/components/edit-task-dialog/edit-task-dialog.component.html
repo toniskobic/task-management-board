@@ -22,9 +22,11 @@
       >
         <mat-label>Status</mat-label>
         <mat-select formControlName="status" panelClass="select-panel">
-          <mat-option *ngFor="let status of taskStatuses" [value]="status">
+          @for (status of taskStatuses; track status) {
+          <mat-option [value]="status">
             {{ statusLabels[status] }}
           </mat-option>
+          }
         </mat-select>
       </mat-form-field>
       <mat-form-field
@@ -33,12 +35,11 @@
       >
         <mat-label>Priority</mat-label>
         <mat-select formControlName="priority" panelClass="select-panel">
-          <mat-option
-            *ngFor="let priority of taskPriorities"
-            [value]="priority"
-          >
+          @for (priority of taskPriorities; track priority) {
+          <mat-option [value]="priority">
             {{ priorityLabels[priority - 1] }}
           </mat-option>
+          }
         </mat-select>
       </mat-form-field>
       <mat-form-field

@@ -1,18 +1,14 @@
-<ng-container *ngIf="control?.invalid && (control?.dirty || control?.touched)">
-  <ng-container
-    *ngIf="validators.includes('required') && control?.errors?.['required']"
-    >{{ label }} is a required field.
-  </ng-container>
-  <ng-container
-    *ngIf="validators.includes('whitespace') && control?.errors?.['whitespace']"
-    >{{ label }} can't have only whitespaces.
-  </ng-container>
-  <ng-container
-    *ngIf="validators.includes('minlength') && control?.errors?.['minlength']"
-    >{{ label }} has a min length of {{ minLengthValue }} characters.
-  </ng-container>
-  <ng-container
-    *ngIf="validators.includes('maxlength') && control?.errors?.['maxlength']"
-    >{{ label }} has a max length of {{ maxLengthValue }} characters.
-  </ng-container>
-</ng-container>
+@if (control.invalid && (control.dirty || control.touched)) {
+  @if (validators.includes('required') && control.errors?.['required']) {
+    <span>{{ label }} is a required field.</span>
+  }
+  @if (validators.includes('whitespace') && control.errors?.['whitespace']) {
+    <span>{{ label }} can't have only whitespaces.</span>
+  }
+  @if (validators.includes('minlength') && control.errors?.['minlength']) {
+    <span>{{ label }} has a min length of {{ minLengthValue }} characters.</span>
+  }
+  @if (validators.includes('maxlength') && control.errors?.['maxlength']) {
+    <span>{{ label }} has a max length of {{ maxLengthValue }} characters.</span>
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { Task, TaskPriority } from 'src/app/models/task.model';
@@ -32,6 +32,7 @@ import { MomentDatePipe } from 'src/app/pipes/moment-date.pipe';
   ],
   templateUrl: './task-card.component.html',
   styleUrls: ['./task-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskCardComponent {
   TaskPriority = TaskPriority;

@@ -1,4 +1,10 @@
-import { Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  Signal,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task, TaskStatus } from 'src/app/models/task.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
@@ -21,12 +27,13 @@ import { UtilsService } from 'src/app/services/utils.service';
     MatIconModule,
     DragDropzoneDirective,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskCategoryComponent {
   TaskStatus = TaskStatus;
 
   @Input() title: string = '';
-  @Input() tasks: Task[] = [];
+  @Input() tasks: Signal<Task[]> = signal([]);
   @Input() category: TaskStatus = TaskStatus.ToDo;
 
   constructor(
@@ -46,8 +53,4 @@ export class TaskCategoryComponent {
       this.storage.setItem('tasks', allTasks);
     }
   };
-
-  trackByFn(index: number, item: Task): string {
-    return item.id;
-  }
 }

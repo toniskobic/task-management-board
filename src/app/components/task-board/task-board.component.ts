@@ -83,9 +83,9 @@ export class TaskBoardComponent {
 
   filteredTasks = computed(this.computeFilteredTasks.bind(this));
 
-  titleFilterActive = computed(() => this.titleFilter().length);
+  titleFilterActive = computed(() => !!this.titleFilter().length);
 
-  assigneeFilterActive = computed(() => this.assigneeFilter().length);
+  assigneeFilterActive = computed(() => !!this.assigneeFilter().length);
 
   prioritiesFilterActive = computed(() => this.prioritiesFilter().length < 3);
 
@@ -136,11 +136,11 @@ export class TaskBoardComponent {
 
   private computeFilteredTasks() {
     const tasks = this.tasks();
-    const titleFilter = this.titleFilter();
-    const assigneeFilter = this.assigneeFilter();
+    const titleFilter = this.titleFilter().trim();
+    const assigneeFilter = this.assigneeFilter().trim();
     const prioritiesFilter = this.prioritiesFilter();
 
-    if (!titleFilter && !assigneeFilter && prioritiesFilter?.length === 3) {
+    if (!titleFilter && !assigneeFilter && prioritiesFilter.length === 3) {
       return tasks;
     }
 
@@ -149,12 +149,12 @@ export class TaskBoardComponent {
         (!titleFilter ||
           task.title
             .toLocaleUpperCase()
-            .includes(titleFilter?.toLocaleUpperCase())) &&
+            .includes(titleFilter.toLocaleUpperCase())) &&
         (!assigneeFilter ||
           task.assignee
             .toLocaleUpperCase()
             .includes(assigneeFilter.toLocaleUpperCase())) &&
-        (prioritiesFilter?.length === 3 ||
+        (prioritiesFilter.length === 3 ||
           prioritiesFilter.includes(task.priority))
       );
     });

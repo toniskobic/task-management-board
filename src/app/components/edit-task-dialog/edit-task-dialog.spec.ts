@@ -6,7 +6,7 @@ import { Task, TaskPriority, TaskStatus } from 'src/app/models/task.model';
 import { UtilsService } from 'src/app/services/utils.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { StorageSchema } from 'src/app/models/storage-schema.model';
-import * as moment from 'moment';
+import moment from 'moment';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';

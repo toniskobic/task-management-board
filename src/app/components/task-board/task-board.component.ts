@@ -89,23 +89,17 @@ export class TaskBoardComponent {
 
   prioritiesFilterActive = computed(() => this.prioritiesFilter().length < 3);
 
-  toDoTasks = computed(() => {
-    return this.filteredTasks()?.filter(
-      (task) => task.status === TaskStatus.ToDo
-    );
-  });
+  toDoTasks = computed(() =>
+    this.filteredTasks()?.filter((task) => task.status === TaskStatus.ToDo)
+  );
 
-  inProgressTasks = computed(() => {
-    return this.filteredTasks()?.filter(
-      (task) => task.status === TaskStatus.InProgress
-    );
-  });
+  inProgressTasks = computed(() =>
+    this.filteredTasks().filter((task) => task.status === TaskStatus.InProgress)
+  );
 
-  completedTasks = computed(() => {
-    return this.filteredTasks()?.filter(
-      (task) => task.status === TaskStatus.Completed
-    );
-  });
+  completedTasks = computed(() =>
+    this.filteredTasks().filter((task) => task.status === TaskStatus.Completed)
+  );
 
   constructor(
     private destroyRef: DestroyRef,

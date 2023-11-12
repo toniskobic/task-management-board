@@ -1,11 +1,10 @@
+import { StorageService } from './storage.service';
 interface TestStorageSchema {
   exampleValue: string;
   exampleValue1: string;
   exampleValue2: string;
   nonExistentKey: string;
 }
-
-import { StorageService } from './storage.service';
 
 describe('StorageService', () => {
   let storageService: StorageService<TestStorageSchema>;

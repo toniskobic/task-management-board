@@ -24,11 +24,11 @@ export class UtilsService {
     });
   }
 
-  getEnumNumberValues(enumObject: any) {
+  getEnumNumberValues(enumObject: { [key: string]: string | number }) {
     const enumValues: number[] = [];
     for (const status in enumObject) {
-      if (isNaN(Number(status))) {
-        enumValues.push(enumObject[status]);
+      if (!isNaN(+status)) {
+        enumValues.push(+status);
       }
     }
     return enumValues;

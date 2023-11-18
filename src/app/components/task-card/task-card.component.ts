@@ -12,7 +12,10 @@ import { StorageSchema } from 'src/app/models/storage-schema.model';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TaskDetailsDialogComponent } from '../task-details-dialog/task-details-dialog.component';
 import { EditTaskDialogComponent } from '../edit-task-dialog/edit-task-dialog.component';
-import { DIALOG_WIDTH } from 'src/app/constants/constants';
+import {
+  DIALOG_WIDTH,
+  TASK_PRIORITY_LABELS,
+} from 'src/app/constants/constants';
 import { A11yModule } from '@angular/cdk/a11y';
 import { MomentDatePipe } from 'src/app/pipes/moment-date.pipe';
 
@@ -36,6 +39,7 @@ import { MomentDatePipe } from 'src/app/pipes/moment-date.pipe';
 })
 export class TaskCardComponent {
   TaskPriority = TaskPriority;
+  priorityLabels = TASK_PRIORITY_LABELS;
 
   @Input() task: Task = {} as Task;
 

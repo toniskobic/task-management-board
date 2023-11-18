@@ -11,7 +11,7 @@
         high: task.priority === TaskPriority.High
       }"
     >
-      prio-{{ task.priority }}
+      {{ priorityLabels[task.priority - 1] }}
     </div>
     <button class="task-options" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon svgIcon="three-dots-horizontal"></mat-icon>

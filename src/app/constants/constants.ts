@@ -19,11 +19,7 @@ export const DIALOG_WIDTH = '640px';
 
 export const TASK_STATUS_LABELS = ['To Do', 'In Progress', 'Completed'];
 
-export const TASK_PRIORITY_LABELS = [
-  'High (prio 1)',
-  'Medium (prio 2)',
-  'Low (prio 3)',
-];
+export const TASK_PRIORITY_LABELS = ['High', 'Medium', 'Low'];
 
 export const DATETIME_OUTPUT_FORMAT = 'DD.MM.YYYY HH:mm';
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { Task, TaskPriority } from 'src/app/models/task.model';
@@ -41,7 +41,7 @@ export class TaskCardComponent {
   TaskPriority = TaskPriority;
   priorityLabels = TASK_PRIORITY_LABELS;
 
-  @Input() task: Task = {} as Task;
+  task = input.required<Task>();
 
   constructor(
     private utilsService: UtilsService,
@@ -61,14 +61,14 @@ export class TaskCardComponent {
   moreDetails() {
     this.dialog.open(TaskDetailsDialogComponent, {
       width: DIALOG_WIDTH,
-      data: { task: this.task },
+      data: { task: this.task() },
     });
   }
 
   edit() {
     this.dialog.open(EditTaskDialogComponent, {
       width: DIALOG_WIDTH,
-      data: { isEdit: true, task: this.task },
+      data: { isEdit: true, task: this.task() },
       disableClose: true,
     });
   }
@@ -77,7 +77,7 @@ export class TaskCardComponent {
     const tasks = this.storage.getItem('tasks') || [];
     this.storage.setItem(
       'tasks',
-      tasks?.filter((task) => task.id !== this.task.id)
+      tasks?.filter((task) => task.id !== this.task().id)
     );
   }
 }

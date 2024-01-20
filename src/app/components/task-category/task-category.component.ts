@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  Signal,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task, TaskStatus } from 'src/app/models/task.model';
 import { TaskCardComponent } from '../task-card/task-card.component';
@@ -32,9 +26,9 @@ import { UtilsService } from 'src/app/services/utils.service';
 export class TaskCategoryComponent {
   TaskStatus = TaskStatus;
 
-  @Input() title: string = '';
-  @Input() tasks: Signal<Task[]> = signal([]);
-  @Input() category: TaskStatus = TaskStatus.ToDo;
+  title = input.required<string>();
+  tasks = input.required<Task[]>();
+  category = input.required<TaskStatus>();
 
   constructor(
     private utilsService: UtilsService,
@@ -49,7 +43,7 @@ export class TaskCategoryComponent {
     const task = allTasks.find((task: Task) => task.id === data);
 
     if (task) {
-      task.status = this.category;
+      task.status = this.category();
       this.storage.setItem('tasks', allTasks);
     }
   };

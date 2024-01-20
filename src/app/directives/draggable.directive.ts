@@ -1,11 +1,11 @@
-import { Directive, HostBinding, HostListener, Input } from '@angular/core';
+import { Directive, HostBinding, HostListener, input } from '@angular/core';
 
 @Directive({
   selector: '[tmbDraggable]',
   standalone: true,
 })
 export class DraggableDirective {
-  @Input({ required: true }) dragData: string = '';
+  dragData = input.required<string>();
 
   @HostBinding('attr.draggable') draggable = true;
 
@@ -13,7 +13,7 @@ export class DraggableDirective {
 
   @HostListener('dragstart', ['$event']) onDragStart(event: DragEvent) {
     if (event.dataTransfer) {
-      event.dataTransfer.setData('text/plain', this.dragData);
+      event.dataTransfer.setData('text/plain', this.dragData());
       event.dataTransfer.effectAllowed = 'move';
     }
   }

@@ -1,14 +1,14 @@
-@if (control.invalid && (control.dirty || control.touched)) {
-  @if (validators.includes('required') && control.errors?.['required']) {
-    <span>{{ label }} is a required field.</span>
+@if (control().invalid && (control().dirty || control().touched)) {
+  @if (validators().includes('required') && control().errors?.['required']) {
+    <span>{{ label() }} is a required field.</span>
   }
-  @if (validators.includes('whitespace') && control.errors?.['whitespace']) {
-    <span>{{ label }} can't have only whitespaces.</span>
+  @if (validators().includes('whitespace') && control().errors?.['whitespace']) {
+    <span>{{ label() }} can't have only whitespaces.</span>
   }
-  @if (validators.includes('minlength') && control.errors?.['minlength']) {
-    <span>{{ label }} has a min length of {{ minLengthValue }} characters.</span>
+  @if (validators().includes('minlength') && control().errors?.['minlength']) {
+    <span>{{ label() }} has a min length of {{ minLengthValue() }} characters.</span>
   }
-  @if (validators.includes('maxlength') && control.errors?.['maxlength']) {
-    <span>{{ label }} has a max length of {{ maxLengthValue }} characters.</span>
+  @if (validators().includes('maxlength') && control().errors?.['maxlength']) {
+    <span>{{ label() }} has a max length of {{ maxLengthValue() }} characters.</span>
   }
 }

@@ -118,8 +118,11 @@ export class EditTaskDialogComponent implements OnInit {
   }
 
   createForm() {
+    const isEdit = this.data.isEdit;
+    const task = this.data.task;
+
     this.form = new FormGroup({
-      title: new FormControl(this.data.isEdit ? this.data.task.title : '', {
+      title: new FormControl(isEdit ? task.title : '', {
         nonNullable: true,
         validators: [
           Validators.required,
@@ -128,40 +131,26 @@ export class EditTaskDialogComponent implements OnInit {
           noWhitespaceValidator,
         ],
       }),
-      status: new FormControl(
-        this.data.isEdit ? this.data.task.status : TaskStatus.ToDo,
-        {
-          nonNullable: true,
-        }
-      ),
-      priority: new FormControl(
-        this.data.isEdit ? this.data.task.priority : TaskPriority.High,
-        {
-          nonNullable: true,
-        }
-      ),
-      assignee: new FormControl(
-        this.data.isEdit ? this.data.task.assignee : '',
-        {
-          nonNullable: true,
-          validators: [Validators.maxLength(255)],
-        }
-      ),
-      description: new FormControl(
-        this.data.isEdit ? this.data.task.description : '',
-        {
-          nonNullable: true,
-          validators: [Validators.maxLength(255)],
-        }
-      ),
+      status: new FormControl(isEdit ? task.status : TaskStatus.ToDo, {
+        nonNullable: true,
+      }),
+      priority: new FormControl(isEdit ? task.priority : TaskPriority.High, {
+        nonNullable: true,
+      }),
+      assignee: new FormControl(isEdit ? task.assignee : '', {
+        nonNullable: true,
+        validators: [Validators.maxLength(255)],
+      }),
+      description: new FormControl(isEdit ? task.description : '', {
+        nonNullable: true,
+        validators: [Validators.maxLength(255)],
+      }),
       createdAt: new FormControl({
-        value: this.data.isEdit ? moment(this.data.task.createdAt) : null,
+        value: isEdit ? moment(task.createdAt) : null,
         disabled: true,
       }),
       dueDate: new FormControl(
-        this.data.isEdit
-          ? moment(this.data.task.dueDate)
-          : moment().add(1, 'hour'),
+        isEdit ? moment(task.dueDate) : moment().add(1, 'hour'),
         {
           nonNullable: true,
         }

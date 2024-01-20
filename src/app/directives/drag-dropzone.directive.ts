@@ -1,19 +1,20 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, input } from '@angular/core';
 
 @Directive({
   selector: '[tmbDragDropzone]',
   standalone: true,
 })
 export class DragDropzoneDirective {
-  @Input() dropCallback?: (event: DragEvent) => void | Promise<void>;
+  dropCallback = input<(event: DragEvent) => void | Promise<void>>();
 
   constructor(private el: ElementRef) {}
 
   @HostListener('drop', ['$event']) async onDrop(event: DragEvent) {
     event.preventDefault();
     this.el.nativeElement.classList.remove('active-dropzone');
-    if (this.dropCallback) {
-      await this.dropCallback(event);
+    const dropCallback = this.dropCallback();
+    if (dropCallback) {
+      await dropCallback(event);
     }
   }
 

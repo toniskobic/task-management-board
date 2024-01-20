@@ -1,7 +1,7 @@
 <div class="category">
   <div class="category-header">
-    <h3 class="category-title">{{ title }}</h3>
-    @switch(category){ @case (TaskStatus.ToDo) {
+    <h3 class="category-title">{{ title() }}</h3>
+    @switch(category()){ @case (TaskStatus.ToDo) {
     <mat-icon class="todo" svgIcon="to-do"></mat-icon>
     } @case (TaskStatus.InProgress) {
     <mat-icon class="in-progress" svgIcon="in-progress"></mat-icon>

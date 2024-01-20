@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AbstractControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,9 +11,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrls: ['./mat-error.component.scss'],
 })
 export class MatErrorComponent {
-  @Input() control!: AbstractControl;
-  @Input() label!: string;
-  @Input() minLengthValue = 2;
-  @Input() maxLengthValue = 255;
-  @Input() validators: string[] = [];
+  control = input.required<AbstractControl>();
+  label = input('');
+  minLengthValue = input(2);
+  maxLengthValue = input(255);
+  validators = input<string[]>([]);
 }

@@ -69,17 +69,17 @@
   </div>
   <div class="board-categories">
     <tmb-task-category
-      [tasks]="toDoTasks"
+      [tasks]="toDoTasks()"
       [title]="'To Do'"
       [category]="TaskStatus.ToDo"
     ></tmb-task-category>
     <tmb-task-category
-      [tasks]="inProgressTasks"
+      [tasks]="inProgressTasks()"
       [title]="'In Progress'"
       [category]="TaskStatus.InProgress"
     ></tmb-task-category>
     <tmb-task-category
-      [tasks]="completedTasks"
+      [tasks]="completedTasks()"
       [title]="'Completed'"
       [category]="TaskStatus.Completed"
     ></tmb-task-category>

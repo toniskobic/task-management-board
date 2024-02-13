@@ -55,7 +55,7 @@ Develop a task management board that allows users to manage tasks across differe
    - Implement filters based on criteria like assigned team member, due date, or priority level.
 
 7. **Local Storage:** :white_check_mark: (Angular storage service implemented that is using the 'typed-local-store' library, a lightweight wrapper for localStorage to provide type safe access)
-   - Persist the task board data using the browser's local storage (:white_check_mark:) or IndexedDB. 
+   - Persist the task board data using the browser's local storage ( :white_check_mark: ) or IndexedDB. 
    - This will allow users to retrieve their task board even after closing or refreshing the page.
 
 8. **Responsiveness:** :white_check_mark:
@@ -71,8 +71,8 @@ Develop a task management board that allows users to manage tasks across differe
     - Validate user inputs and handle any edge cases to ensure a smooth user experience.
 
 11. **Accessibility:** :white_check_mark:
-    - Consider accessibility guidelines by providing appropriate alt text for images, keyboard navigation support, and ensuring sufficient color contrast (:warning:) for users with visual impairments.
+    - Consider accessibility guidelines by providing appropriate alt text for images, keyboard navigation support, and ensuring sufficient color contrast ( :warning: ) for users with visual impairments.
 
 12. **Testing:** :white_check_mark: (Jasmine testing framework and Karma test runner)
-    - Write automated tests using a testing framework like Mocha and Jasmine (:white_check_mark:) or a framework of your choice to verify the functionality of critical components.
+    - Write automated tests using a testing framework like Mocha and Jasmine ( :white_check_mark: ) or a framework of your choice to verify the functionality of critical components.
     - Test task creation, drag-and-drop functionality, and data persistence to ensure the reliability of the task management board.
